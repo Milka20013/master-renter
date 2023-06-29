@@ -3,11 +3,14 @@
   <div class="container" *ngIf="!authenticated">
     <div>Sign in using your token below</div>
     <input class="token-input" id="token-input" />
-    <div class="buttons">
+    <div class="container">
       <button (click)="checkToken()">Sign in</button>
-      <button (click)="generateToken()">I don't have a token</button>
+      <button (click)="generateLandlordToken()">Generate landlord token</button>
+      <button (click)="generateTenantToken()">Generate tenant token</button>
     </div>
-    <div *ngIf="!!token">Your generated token: "{{ token }}"</div>
+    <div *ngIf="showGeneratedToken">
+      Your generated token: "{{ token.guid }}"
+    </div>
   </div>
   <npm-authentication *ngIf="authenticated" />
 </main>

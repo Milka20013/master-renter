@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SignUpService } from './sign-up.service';
 import { User } from 'src/app/models/user';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'npm-sign-up',
@@ -10,7 +11,10 @@ import { User } from 'src/app/models/user';
 export class SignUpComponent {
   @Output() onLogInInstead: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private signUpService: SignUpService) {}
+  constructor(
+    private signUpService: SignUpService,
+    private authService: AuthenticationService
+  ) {}
 
   signUp() {
     let email = (<HTMLInputElement>document.getElementById('email-input'))
@@ -25,7 +29,11 @@ export class SignUpComponent {
       console.log('pw1 is not equal to pw2');
       return;
     }
-    if (!this.signUpService.signUp(new User(email, password1))) {
+    if (
+      !this.signUpService.signUp(
+        new User(email, password1, this.authService.currentToken.type)
+      )
+    ) {
       return;
     }
     this.onClickLogInInstead();
