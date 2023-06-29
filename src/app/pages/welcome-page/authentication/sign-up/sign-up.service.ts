@@ -8,11 +8,13 @@ import { User } from 'src/app/models/user';
 export class SignUpService {
   constructor(private dbService: DbService) {}
 
-  signUp(user: User) {
-    if (this.dbService.checkUser(user)) {
-      return;
+  signUp(user: User): boolean {
+    if (this.dbService.checkIfUserExist(user)) {
+      console.log('Email is already registered');
+      return false;
     }
     this.dbService.addUser(user);
     console.log('Signed up!');
+    return true;
   }
 }

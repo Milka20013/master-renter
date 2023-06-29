@@ -25,7 +25,9 @@ export class SignUpComponent {
       console.log('pw1 is not equal to pw2');
       return;
     }
-    this.signUpService.signUp(new User(email, password1));
+    if (!this.signUpService.signUp(new User(email, password1))) {
+      return;
+    }
     this.onClickLogInInstead();
   }
 

@@ -10,7 +10,7 @@ export class LoginService {
   constructor(private dbServive: DbService) {}
 
   logIn(email: string, password: string) {
-    if (this.dbServive.checkUser(new User(email, password))) {
+    if (this.dbServive.checkUserLogin(new User(email, password))) {
       this.loggedInUser = new User(email, password);
       console.log('logged in!');
     } else {

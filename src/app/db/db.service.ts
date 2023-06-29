@@ -22,7 +22,11 @@ export class DbService {
     this.users.push(user);
   }
 
-  checkUser(user: User) {
+  checkIfUserExist(user: User) {
+    return !!this.users.find((x) => x.email == user.email);
+  }
+
+  checkUserLogin(user: User) {
     return !!this.users.find(
       (x) => x.email == user.email && x.password == user.password
     );
