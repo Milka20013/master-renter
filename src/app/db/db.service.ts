@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DbService {
   tokens: string[] = [];
+  users: User[] = [];
 
   constructor() {}
 
@@ -13,11 +15,16 @@ export class DbService {
   }
 
   checkToken(token: string): boolean {
-    for (let i = 0; i < this.tokens.length; i++) {
-      if (this.tokens[i] === token) {
-        return true;
-      }
-    }
-    return false;
+    return !!this.tokens.find((x) => x == token);
+  }
+
+  addUser(user: User) {
+    this.users.push(user);
+  }
+
+  checkUser(user: User) {
+    return !!this.users.find(
+      (x) => x.email == user.email && x.password == user.password
+    );
   }
 }
