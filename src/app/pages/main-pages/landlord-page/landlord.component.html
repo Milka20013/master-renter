@@ -1,1 +1,5 @@
-<p>landlord works!</p>
+<npm-landlord-header (onMenuClicked)="onMenuClicked($event)" />
+<npm-tenant-menu *ngIf="selectedMenu == MenuSelector.Tenant"></npm-tenant-menu>
+<npm-apartment-menu
+  *ngIf="selectedMenu == MenuSelector.Apartment"
+></npm-apartment-menu>
