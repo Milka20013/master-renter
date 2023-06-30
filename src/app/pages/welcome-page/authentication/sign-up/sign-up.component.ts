@@ -17,12 +17,12 @@ export class SignUpComponent {
   ) {}
 
   signUp() {
-    let email = (<HTMLInputElement>document.getElementById('email-input'))
+    const email = (<HTMLInputElement>document.getElementById('email-input'))
       .value;
-    let password1 = (<HTMLInputElement>(
+    const password1 = (<HTMLInputElement>(
       document.getElementById('password-input-1')
     )).value;
-    let password2 = (<HTMLInputElement>(
+    const password2 = (<HTMLInputElement>(
       document.getElementById('password-input-2')
     )).value;
     if (password1 !== password2) {

@@ -12,6 +12,12 @@ export class DbService {
 
   constructor() {}
 
+  generateToken(type: UserType): Token {
+    let token = new Token(crypto.randomUUID(), type);
+    this.addToken(token);
+    return token;
+  }
+
   addToken(token: Token) {
     if (token.type == UserType.None || token.guid.toLowerCase() === 'none') {
       return;

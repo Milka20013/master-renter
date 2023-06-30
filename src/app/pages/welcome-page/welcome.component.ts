@@ -19,16 +19,12 @@ export class WelcomeComponent {
   ) {}
 
   generateLandlordToken(): void {
-    this.token.guid = crypto.randomUUID();
-    this.token.type = UserType.Landlord;
-    this.dbService.addToken(this.token);
+    this.token = this.dbService.generateToken(UserType.Landlord);
     this.showGeneratedToken = true;
   }
 
   generateTenantToken(): void {
-    this.token.guid = crypto.randomUUID();
-    this.token.type = UserType.Tenant;
-    this.dbService.addToken(this.token);
+    this.token = this.dbService.generateToken(UserType.Tenant);
     this.showGeneratedToken = true;
   }
 

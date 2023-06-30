@@ -10,7 +10,7 @@ export class LandlordComponent {
   //make the enum visible in html component
   MenuSelector = MenuSelector;
 
-  selectedMenu = MenuSelector.None;
+  selectedMenu = MenuSelector.Tenant;
 
   onMenuClicked(menu: MenuSelector) {
     this.selectedMenu = menu;
