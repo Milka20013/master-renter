@@ -10,8 +10,8 @@ import { SignUpComponent } from './pages/welcome-page/authentication/sign-up/sig
 import { LandlordComponent } from './pages/main-pages/landlord-page/landlord.component';
 import { TenantComponent } from './pages/main-pages/tenant-page/tenant.component';
 import { LandlordHeaderComponent } from './pages/main-pages/landlord-page/header/landlord-header.component';
-import { TenantMenuComponent } from './pages/main-pages/landlord-page/tenant-menu.component';
-import { ApartmentMenuComponent } from './pages/main-pages/landlord-page/apartment-menu.component';
+import { ApartmentMenuComponent } from './pages/main-pages/landlord-page/menus/apartment/apartment-menu.component';
+import { TenantMenuComponent } from './pages/main-pages/landlord-page/menus/tenant/tenant-menu.component';
 
 @NgModule({
   declarations: [

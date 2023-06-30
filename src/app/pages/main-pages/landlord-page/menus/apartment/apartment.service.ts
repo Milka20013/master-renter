@@ -10,6 +10,13 @@ export class ApartmentService {
     new Apartment('test2', 'asd', 4),
   ];
   constructor() {}
+  public getApartment(name: string) {
+    const foundApartment = this.apartments.find((x) => x.name === name);
+    if (!!foundApartment) {
+      return foundApartment;
+    }
+    return Apartment.None;
+  }
 
   registerApartment(apartment: Apartment) {
     this._apartments.push(apartment);

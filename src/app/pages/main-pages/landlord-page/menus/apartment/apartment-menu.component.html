@@ -9,7 +9,13 @@
 <h2>Apartments</h2>
 <div class="container">
   <table class="table" *ngIf="apartments.length">
-    <thead></thead>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Rent</td>
+      </tr>
+    </thead>
     <tbody>
       <tr *ngFor="let apartment of apartments">
         <td>{{ apartment.name }}</td>

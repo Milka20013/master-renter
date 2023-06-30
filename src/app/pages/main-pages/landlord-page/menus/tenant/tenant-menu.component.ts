@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Token } from 'src/app/models/token';
 import { DbService } from 'src/app/db/db.service';
 import { UserType } from 'src/app/enums/user-type';
-import { ApartmentService } from './apartment.service';
 import { Apartment } from 'src/app/models/apartment';
 import { TenantService } from './tenant.service';
 import { Tenant } from 'src/app/models/tenant';
+import { ApartmentService } from '../apartment/apartment.service';
 
 @Component({
   selector: 'npm-tenant-menu',
@@ -39,11 +39,28 @@ export class TenantMenuComponent implements OnInit {
     const exitDate: Date = new Date(
       (<HTMLInputElement>document.getElementById('exit')).value
     );
+    if (!!!entryDate.getDate() || !!!exitDate.getDate()) {
+      //one or more of the dates are invalid
+      return;
+    }
     const rent: number = +(<HTMLInputElement>document.getElementById('rent'))
       .value;
-    this.tenantService.registerTenant(
-      new Tenant(name, entryDate, exitDate, rent)
+    const apartmentElement = <HTMLSelectElement>(
+      document.getElementById('apartments')
     );
-    this.tenants = this.tenantService.tenants;
+    const index = apartmentElement.selectedIndex;
+    const apartment: Apartment = this.apartmentService.getApartment(
+      apartmentElement.options[index].text
+    );
+
+    this.tenantService.registerTenant(
+      new Tenant(name, entryDate, exitDate, rent, apartment)
+    );
   }
+
+  unregisterTenant(tenant: Tenant) {
+    this.tenantService.unregisterTenant(tenant);
+  }
+
+  modifyTenant(tenant: Tenant) {}
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Apartment } from 'src/app/models/apartment';
 import { Tenant } from 'src/app/models/tenant';
 
 @Injectable({
@@ -6,8 +7,20 @@ import { Tenant } from 'src/app/models/tenant';
 })
 export class TenantService {
   private _tenants: Tenant[] = [
-    new Tenant('asd', new Date('2000/01/01'), new Date('2000/02/01'), 6),
-    new Tenant('asd2', new Date('2000/01/01'), new Date('2000/02/01'), 10),
+    new Tenant(
+      'asd',
+      new Date('2000/01/01'),
+      new Date('2000/02/01'),
+      6,
+      Apartment.None
+    ),
+    new Tenant(
+      'asd2',
+      new Date('2000/01/01'),
+      new Date('2000/02/01'),
+      10,
+      Apartment.None
+    ),
   ];
   constructor() {}
 
