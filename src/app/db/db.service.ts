@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Token } from '../models/token';
 import { UserType } from '../enums/user-type';
+import { Bill } from '../models/bill';
 
 @Injectable({
   providedIn: 'root',

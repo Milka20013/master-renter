@@ -12,6 +12,7 @@ import { TenantComponent } from './pages/main-pages/tenant-page/tenant.component
 import { LandlordHeaderComponent } from './pages/main-pages/landlord-page/header/landlord-header.component';
 import { ApartmentMenuComponent } from './pages/main-pages/landlord-page/menus/apartment/apartment-menu.component';
 import { TenantMenuComponent } from './pages/main-pages/landlord-page/menus/tenant/tenant-menu.component';
+import { BillComponent } from './pages/main-pages/landlord-page/menus/bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TenantMenuComponent } from './pages/main-pages/landlord-page/menus/tena
     LandlordHeaderComponent,
     TenantMenuComponent,
     ApartmentMenuComponent,
+    BillComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

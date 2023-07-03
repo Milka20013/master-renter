@@ -8,7 +8,7 @@ import { Token } from 'src/app/models/token';
 })
 export class AuthenticationService {
   private _authenticatedToken: Token = Token.Empty;
-  private _isAuthenticated = UserType.None;
+  private _isAuthenticated = UserType.Landlord;
   constructor(private router: Router) {}
 
   authenticateToken(token: Token) {
