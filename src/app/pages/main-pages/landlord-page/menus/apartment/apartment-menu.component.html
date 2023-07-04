@@ -1,11 +1,29 @@
-<h2>Register an apartment</h2>
-<label for="name">Name:</label>
-<input type="text" id="name" /><br /><br />
-<label for="address">Address:</label>
-<input type="text" id="address" /><br /><br />
-<label for="rent">Rent:</label>
-<input type="number" id="rent" /><br /><br />
-<button (click)="registerApartment()">Register</button>
+<div class="register">
+  <div class="header">Register an apartment</div>
+  <material-input
+    class="input"
+    id="name-input"
+    placeholder="Name"
+    label="Name"
+    (onChange)="updateName($event)"
+  />
+  <material-input
+    class="input"
+    id="address-input"
+    placeholder="Address"
+    label="Address"
+    (onChange)="updateAddress($event)"
+  />
+  <material-input
+    class="input"
+    id="rent-input"
+    placeholder="Rent"
+    label="Rent"
+    (onChange)="updateRent(+$event)"
+    type="number"
+  />
+  <material-button (click)="registerApartment()" inputText="Register" />
+</div>
 <h2>Apartments</h2>
 <div class="container">
   <table class="table" *ngIf="apartments.length">

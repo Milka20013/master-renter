@@ -9,19 +9,32 @@ import { Apartment } from 'src/app/models/apartment';
 })
 export class ApartmentMenuComponent implements OnInit {
   apartments: Apartment[] = [];
+
+  name: string = '';
+  address: string = '';
+  rent: number = 0;
   constructor(private apartmentSercive: ApartmentService) {}
   ngOnInit(): void {
     this.apartments = this.apartmentSercive.apartments;
   }
 
+  updateName(name: string) {
+    this.name = name;
+  }
+  updateAddress(address: string) {
+    this.address = address;
+  }
+  updateRent(rent: number) {
+    this.rent = rent;
+  }
+
   registerApartment() {
-    const name = (<HTMLInputElement>document.getElementById('name')).value;
-    const address = (<HTMLInputElement>document.getElementById('address'))
-      .value;
-    const rent: number = +(<HTMLInputElement>document.getElementById('rent'))
-      .value;
-    this.apartmentSercive.registerApartment(new Apartment(name, address, rent));
-    this.apartments = this.apartmentSercive.apartments;
-    console.log(this.apartments);
+    if (!!!this.name) {
+      console.error('Name cannot be empty');
+      return;
+    }
+    this.apartmentSercive.registerApartment(
+      new Apartment(this.name, this.address, this.rent)
+    );
   }
 }
