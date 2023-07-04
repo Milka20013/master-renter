@@ -1,0 +1,14 @@
+<mat-form-field
+  class="from-field"
+  [style.width]="width"
+  subscriptSizing="dynamic"
+>
+  <mat-label>{{label}}</mat-label>
+  <input
+    matInput
+    (placeholder)="placeholder"
+    [(ngModel)]="text"
+    (change)="onValueChange(text)"
+    [type]="type"
+  />
+</mat-form-field>

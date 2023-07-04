@@ -10,28 +10,36 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class SignUpComponent {
   @Output() onLogInInstead: EventEmitter<void> = new EventEmitter<void>();
+  email: string = '';
+  password1: string = '';
+  password2: string = '';
 
   constructor(
     private signUpService: SignUpService,
     private authService: AuthenticationService
   ) {}
 
+  updateEmail(email: string) {
+    this.email = email;
+  }
+  updatePw1(password: string) {
+    this.password1 = password;
+  }
+  updatePw2(password: string) {
+    this.password2 = password;
+  }
   signUp() {
-    const email = (<HTMLInputElement>document.getElementById('email-input'))
-      .value;
-    const password1 = (<HTMLInputElement>(
-      document.getElementById('password-input-1')
-    )).value;
-    const password2 = (<HTMLInputElement>(
-      document.getElementById('password-input-2')
-    )).value;
-    if (password1 !== password2) {
+    if (this.password1.length <= 4) {
+      console.log('pw is too short');
+      return;
+    }
+    if (this.password1 !== this.password2) {
       console.log('pw1 is not equal to pw2');
       return;
     }
     if (
       !this.signUpService.signUp(
-        new User(email, password1, this.authService.currentToken.type)
+        new User(this.email, this.password1, this.authService.currentToken.type)
       )
     ) {
       return;

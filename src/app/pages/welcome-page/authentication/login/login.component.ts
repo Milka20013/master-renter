@@ -7,16 +7,19 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.less'],
 })
 export class LoginComponent {
+  email: string = '';
+  password: string = '';
   @Output() onSignUpInstead: EventEmitter<void> = new EventEmitter<void>();
 
+  updateEmail(email: string) {
+    this.email = email;
+  }
+  updatePw(password: string) {
+    this.password = password;
+  }
   constructor(private loginService: LoginService) {}
   login() {
-    const email = (<HTMLInputElement>document.getElementById('email-input'))
-      .value;
-    const password = (<HTMLInputElement>(
-      document.getElementById('password-input')
-    )).value;
-    this.loginService.logIn(email, password);
+    this.loginService.logIn(this.email, this.password);
   }
 
   onClickSignUpInstead() {

@@ -1,16 +1,32 @@
-<main class="container">
-  <h1>Welcome!</h1>
-  <div class="container" *ngIf="!authenticated">
-    <div>Sign in using your token below</div>
-    <input class="token-input" id="token-input" />
-    <div class="container">
-      <button (click)="checkToken()">Sign in</button>
-      <button (click)="generateLandlordToken()">Generate landlord token</button>
-      <button (click)="generateTenantToken()">Generate tenant token</button>
+<main>
+  <div class="container">
+    <div class="header">Welcome!</div>
+    <div class="container" *ngIf="!authenticated">
+      <div>Sign in using your token below</div>
+      <material-input
+        class="token-input"
+        id="token-input"
+        placeholder="Token"
+        label="Token"
+        width="25vw"
+        (onChange)="updateInputValue($event)"
+      >
+      </material-input>
+      <div class="container">
+        <material-button (click)="checkToken()" inputText="Sign in" />
+        <material-button
+          (click)="generateLandlordToken()"
+          inputText="Generate landlord token"
+        />
+        <material-button
+          (click)="generateTenantToken()"
+          inputText="Generate tenant token"
+        />
+      </div>
+      <div *ngIf="showGeneratedToken">
+        Your generated token: "{{ token.guid }}"
+      </div>
     </div>
-    <div *ngIf="showGeneratedToken">
-      Your generated token: "{{ token.guid }}"
-    </div>
+    <npm-authentication *ngIf="authenticated" />
   </div>
-  <npm-authentication *ngIf="authenticated" />
 </main>

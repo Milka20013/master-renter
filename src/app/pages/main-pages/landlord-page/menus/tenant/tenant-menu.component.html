@@ -1,18 +1,42 @@
-<button (click)="generateToken()">Generate tenant token</button>
-<div *ngIf="showToken">Your generated token: "{{ token.guid }}"</div>
-<h2>Register tenant</h2>
-<label for="name">Name:</label>
-<input type="text" id="name" /><br /><br />
-<label for="entry">Entry date:</label>
-<input type="date" id="entry" /><br /><br />
-<label for="exit">Exit date:</label>
-<input type="date" id="exit" /><br /><br />
-<label for="rent">Rent:</label>
-<input type="number" id="rent" /><br /><br />
-<select name="apartments" id="apartments">
-  <option *ngFor="let apartment of apartments">{{ apartment.name }}</option>
-</select>
-<button (click)="registerTenant()">Register</button>
+<div class="register">
+  <div class="header">Register Tenant</div>
+
+  <material-button
+    (click)="generateToken()"
+    inputText="Generate tenant token"
+  />
+  <div *ngIf="showToken">Your generated token: "{{ token.guid }}"</div>
+  <material-input
+    class="input"
+    id="name-input"
+    placeholder="Name"
+    label="Name"
+    (onChange)="updateName($event)"
+  />
+  <material-date-picker
+    (onDateChange)="updateEntryDate($event)"
+    placeHolder="Entry date"
+  />
+  <material-date-picker
+    (onDateChange)="updateExitDate($event)"
+    placeHolder="Exit date"
+  />
+  <material-input
+    class="input"
+    id="rent-input"
+    placeholder="Rent"
+    label="Rent"
+    (onChange)="updateRent(+$event)"
+    type="number"
+  />
+  <material-select
+    [options]="apartments"
+    placeHolder="Apartment"
+    (onChange)="updateApartment($event)"
+  />
+  <material-button (click)="registerTenant()" inputText="Register" />
+</div>
+
 <div class="container">
   <table class="table" *ngIf="tenants.length">
     <thead>
@@ -33,7 +57,7 @@
         <td>{{ tenant.apartment.name }}</td>
         <!--hard coded currency type !!-->
         <td>{{ tenant.rent }} $</td>
-        <td>{{ tenant.remainingTime | number : "2.1-2" }} days</td>
+        <td>{{ tenant.remainingTime | number : "0.0-2" }} days</td>
         <td>
           <button (click)="unregisterTenant(tenant)">Remove tenant</button>
           <button (click)="modifyTenant(tenant)">Modify</button>

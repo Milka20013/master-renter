@@ -1,13 +1,19 @@
 <main class="container">
   <div class="container">
-    <button class="main-element" (click)="clickMenu(MenuSelector.Tenant)">
-      Tenants
-    </button>
-    <button class="main-element" (click)="clickMenu(MenuSelector.Apartment)">
-      Apartments
-    </button>
-    <button class="main-element" (click)="clickMenu(MenuSelector.Bill)">
-      Bills
-    </button>
+    <material-button
+      class="main-element"
+      (click)="clickMenu(MenuSelector.Tenant)"
+      inputText="Tenants"
+    />
+    <material-button
+      class="main-element"
+      (click)="clickMenu(MenuSelector.Apartment)"
+      inputText="Apartments"
+    />
+    <material-button
+      class="main-element"
+      (click)="clickMenu(MenuSelector.Bill)"
+      inputText="Bills"
+    />
   </div>
 </main>

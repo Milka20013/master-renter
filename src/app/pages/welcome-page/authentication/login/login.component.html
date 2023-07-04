@@ -1,11 +1,27 @@
 <main class="container">
   <h2>Sign in to your account</h2>
-  <div class="label">Email</div>
-  <input id="email-input" />
-  <div class="label">Password</div>
-  <input type="password" id="password-input" />
+  <material-input
+    class="input"
+    id="email-input"
+    placeholder="Email"
+    label="Email"
+    width="25vw"
+    (onChange)="updateEmail($event)"
+  />
+  <material-input
+    class="input"
+    id="password-input"
+    placeholder="Password"
+    label="Password"
+    width="25vw"
+    type="password"
+    (onChange)="updatePw($event)"
+  />
   <div class="buttons">
-    <button (click)="login()">Log in</button>
-    <button (click)="onClickSignUpInstead()">Sign up instead</button>
+    <material-button (click)="login()" inputText="Log in" />
+    <material-button
+      (click)="onClickSignUpInstead()"
+      inputText="Sign up instead"
+    />
   </div>
 </main>

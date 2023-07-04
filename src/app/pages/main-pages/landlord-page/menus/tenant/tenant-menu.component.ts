@@ -6,6 +6,7 @@ import { Apartment } from 'src/app/models/apartment';
 import { TenantService } from './tenant.service';
 import { Tenant } from 'src/app/models/tenant';
 import { ApartmentService } from '../apartment/apartment.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'npm-tenant-menu',
@@ -17,6 +18,12 @@ export class TenantMenuComponent implements OnInit {
   token = Token.Empty;
   apartments: Apartment[] = [];
   tenants: Tenant[] = [];
+
+  name: string = '';
+  entryDate: Date = new Date();
+  exitDate: Date = new Date();
+  rent: number = 0;
+  apartment: Apartment = Apartment.None;
   constructor(
     private dbService: DbService,
     private apartmentService: ApartmentService,
@@ -31,30 +38,41 @@ export class TenantMenuComponent implements OnInit {
     this.showToken = true;
   }
 
+  updateEntryDate(event: MatDatepickerInputEvent<Date>) {
+    if (event.value == null) {
+      return;
+    }
+    this.entryDate = event.value;
+  }
+  updateExitDate(event: MatDatepickerInputEvent<Date>) {
+    if (event.value == null) {
+      return;
+    }
+    this.exitDate = event.value;
+  }
+  updateName(name: string) {
+    this.name = name;
+  }
+  updateRent(rent: number) {
+    this.rent = rent;
+  }
+
+  updateApartment(apartmentName: string) {
+    this.apartment = this.apartmentService.getApartment(apartmentName);
+  }
   registerTenant() {
-    const name = (<HTMLInputElement>document.getElementById('name')).value;
-    const entryDate: Date = new Date(
-      (<HTMLInputElement>document.getElementById('entry')).value
-    );
-    const exitDate: Date = new Date(
-      (<HTMLInputElement>document.getElementById('exit')).value
-    );
-    if (!!!entryDate.getDate() || !!!exitDate.getDate()) {
+    if (!!!this.entryDate.getDate() || !!!this.exitDate.getDate()) {
       //one or more of the dates are invalid
       return;
     }
-    const rent: number = +(<HTMLInputElement>document.getElementById('rent'))
-      .value;
-    const apartmentElement = <HTMLSelectElement>(
-      document.getElementById('apartments')
-    );
-    const index = apartmentElement.selectedIndex;
-    const apartment: Apartment = this.apartmentService.getApartment(
-      apartmentElement.options[index].text
-    );
-
     this.tenantService.registerTenant(
-      new Tenant(name, entryDate, exitDate, rent, apartment)
+      new Tenant(
+        this.name,
+        this.entryDate,
+        this.exitDate,
+        this.rent,
+        this.apartment
+      )
     );
   }
 

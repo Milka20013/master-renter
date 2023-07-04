@@ -13,6 +13,12 @@ import { LandlordHeaderComponent } from './pages/main-pages/landlord-page/header
 import { ApartmentMenuComponent } from './pages/main-pages/landlord-page/menus/apartment/apartment-menu.component';
 import { TenantMenuComponent } from './pages/main-pages/landlord-page/menus/tenant/tenant-menu.component';
 import { BillComponent } from './pages/main-pages/landlord-page/menus/bill/bill.component';
+import { MaterialDatePicker } from './material-ui/date-picker/material-date-picker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialButton } from './material-ui/button/material-button';
+import { MaterialInput } from './material-ui/input/material-input';
+import { MaterialSelect } from './material-ui/select/material-select';
+import { MaterialTable } from './material-ui/table/material-table';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,16 @@ import { BillComponent } from './pages/main-pages/landlord-page/menus/bill/bill.
     ApartmentMenuComponent,
     BillComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialDatePicker,
+    MaterialButton,
+    MaterialInput,
+    MaterialSelect,
+    MaterialTable,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

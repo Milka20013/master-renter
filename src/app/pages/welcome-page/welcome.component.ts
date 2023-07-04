@@ -13,6 +13,7 @@ export class WelcomeComponent {
   token: Token = Token.Empty;
   showGeneratedToken = false;
   authenticated = false;
+  inputValue = '';
   constructor(
     private dbService: DbService,
     private authService: AuthenticationService
@@ -28,11 +29,15 @@ export class WelcomeComponent {
     this.showGeneratedToken = true;
   }
 
+  updateInputValue(value: string) {
+    this.inputValue = value;
+  }
   checkToken(): void {
-    let input = <HTMLInputElement>document.getElementById('token-input');
-    if (this.dbService.checkToken(input.value)) {
+    if (this.dbService.checkToken(this.inputValue)) {
       this.authenticated = true;
-      this.authService.authenticateToken(this.dbService.getToken(input.value));
+      this.authService.authenticateToken(
+        this.dbService.getToken(this.inputValue)
+      );
     } else {
       console.log('nop');
     }
