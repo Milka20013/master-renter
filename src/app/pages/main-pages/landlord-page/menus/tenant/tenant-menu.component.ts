@@ -16,7 +16,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 export class TenantMenuComponent implements OnInit {
   showToken = false;
   token = Token.Empty;
-  apartments: Apartment[] = [];
+  apartmentNames: string[] = [];
   tenants: Tenant[] = [];
 
   name: string = '';
@@ -30,7 +30,7 @@ export class TenantMenuComponent implements OnInit {
     private tenantService: TenantService
   ) {}
   ngOnInit(): void {
-    this.apartments = this.apartmentService.apartments;
+    this.apartmentNames = this.apartmentService.apartments.map((x) => x.name);
     this.tenants = this.tenantService.tenants;
   }
   generateToken() {

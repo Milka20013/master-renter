@@ -1,8 +1,8 @@
 <mat-form-field [style.width]="width" subscriptSizing="dynamic">
   <mat-label>{{placeHolder}}</mat-label>
   <mat-select (selectionChange)="onChanged($event.value)">
-    <mat-option *ngFor="let option of options" [value]="option.name">
-      {{option.name}}
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{option}}
     </mat-option>
   </mat-select>
 </mat-form-field>

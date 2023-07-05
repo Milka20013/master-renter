@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Bill } from 'src/app/models/bill';
 import { BillService } from './bill.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-
+import { BillType } from 'src/app/enums/bill-type';
+interface NamedBill {
+  name: string;
+}
 @Component({
   selector: 'npm-bill',
   templateUrl: './bill.component.html',
@@ -10,8 +13,9 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 })
 export class BillComponent implements OnInit {
   bills: Bill[] = [];
-
-  type: string = '';
+  billEnum = BillType;
+  billTypes: string[] = [];
+  type: BillType = BillType.None;
   amount: number = 0;
   dueTo: Date = new Date();
   description: string = '';
@@ -19,9 +23,12 @@ export class BillComponent implements OnInit {
 
   ngOnInit(): void {
     this.bills = this.billService.bills;
+    this.billTypes = Object.keys(this.billEnum).filter((x) => !!!+x);
   }
-
-  updateType(type: string) {
+  onRowClick(i: number) {
+    console.log(i);
+  }
+  updateType(type: BillType) {
     this.type = type;
   }
   updateAmount(amount: number) {

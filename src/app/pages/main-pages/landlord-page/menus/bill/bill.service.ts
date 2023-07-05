@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BillType } from 'src/app/enums/bill-type';
 import { Bill } from 'src/app/models/bill';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Bill } from 'src/app/models/bill';
 export class BillService {
   private _bills: Bill[] = [
     new Bill(
-      'Electric bill',
+      BillType.Electric,
       400,
       new Date('2023/07/30'),
       'You have to pay lmao'

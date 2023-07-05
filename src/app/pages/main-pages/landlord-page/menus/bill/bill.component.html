@@ -1,12 +1,11 @@
 <div class="register">
   <div class="header">Register a bill</div>
-  <material-input
-    class="input"
-    id="type-input"
-    placeholder="Type"
-    label="Type"
+  <material-select
+    [options]="billTypes"
+    placeHolder="Bill type"
     (onChange)="updateType($event)"
   />
+
   <material-input
     class="input"
     id="amount-input"
@@ -40,7 +39,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let bill of bills">
+      <tr *ngFor="let bill of bills; index as i" (click)="onRowClick(i)">
         <td>{{ bill.type }}</td>
         <td>{{ bill.amount }} $</td>
         <td>{{ bill.dueTo | date : "longDate" }}</td>
