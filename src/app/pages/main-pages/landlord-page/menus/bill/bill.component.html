@@ -25,6 +25,11 @@
     label="Description"
     (onChange)="updateDescription($event)"
   />
+  <material-select
+    placeHolder="Apartment"
+    [options]="apartmentNames"
+    (onChange)="updateApartment($event)"
+  />
   <material-button (click)="registerBill()" inputText="Register" />
 </div>
 <h2>Bills</h2>
@@ -36,14 +41,18 @@
         <td>Amount</td>
         <td>Due To</td>
         <td>Description</td>
+        <td>Apartment</td>
+        <td>Status</td>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let bill of bills; index as i" (click)="onRowClick(i)">
-        <td>{{ bill.type }}</td>
+        <td>{{ billEnum[bill.type] }}</td>
         <td>{{ bill.amount }} $</td>
         <td>{{ bill.dueTo | date : "longDate" }}</td>
         <td>{{ bill.description }}</td>
+        <td>{{ bill.apartment.name }}</td>
+        <td>{{ billStatus[bill.status] }}</td>
       </tr>
     </tbody>
   </table>

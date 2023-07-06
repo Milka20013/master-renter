@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BillType } from 'src/app/enums/bill-type';
+import { Apartment } from 'src/app/models/apartment';
 import { Bill } from 'src/app/models/bill';
 
 @Injectable({
@@ -11,7 +12,8 @@ export class BillService {
       BillType.Electric,
       400,
       new Date('2023/07/30'),
-      'You have to pay lmao'
+      'You have to pay lmao',
+      Apartment.None
     ),
   ];
   constructor() {}
@@ -26,6 +28,13 @@ export class BillService {
   }
 
   public get bills() {
+    for (let index = 0; index < this._bills.length; index++) {
+      this._bills[index].checkStatus();
+    }
     return this._bills;
+  }
+
+  getBills(apartment: Apartment): Bill[] {
+    return this.bills.filter((x) => x.apartment == apartment);
   }
 }
