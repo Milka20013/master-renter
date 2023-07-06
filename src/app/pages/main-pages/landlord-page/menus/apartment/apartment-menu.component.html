@@ -35,7 +35,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let apartment of apartments">
+      <tr
+        *ngFor="let apartment of apartments"
+        (click)="navigateToApartmentPage(apartment)"
+      >
         <td>{{ apartment.name }}</td>
         <td>{{ apartment.address }}</td>
         <td>{{ apartment.rent }}</td>

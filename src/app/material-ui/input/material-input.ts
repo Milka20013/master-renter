@@ -15,6 +15,8 @@ export class MaterialInput {
   @Input() text = '';
   @Input() label = '';
   @Input() width = '15vw';
+  @Input() height = 'auto';
+  @Input() fontSize = 'auto';
   @Input() type = 'text';
   @Output() onChange: EventEmitter<string> = new EventEmitter<string>();
 

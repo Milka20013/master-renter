@@ -5,6 +5,7 @@ import { LandlordComponent } from './pages/main-pages/landlord-page/landlord.com
 import { TenantComponent } from './pages/main-pages/tenant-page/tenant.component';
 import { authenticationGuard } from './pages/welcome-page/authentication/authentication.guard';
 import { UserType } from './enums/user-type';
+import { ApartmentPageComponent } from './pages/apartment-page/apartment-page.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -17,6 +18,15 @@ const routes: Routes = [
     path: 'tenant',
     component: TenantComponent,
     canActivate: [authenticationGuard(UserType.Tenant)],
+  },
+  {
+    path: 'apartment/:id',
+    component: ApartmentPageComponent,
+    canActivate: [authenticationGuard(UserType.Landlord)],
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
 

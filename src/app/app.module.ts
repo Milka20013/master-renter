@@ -19,6 +19,7 @@ import { MaterialButton } from './material-ui/button/material-button';
 import { MaterialInput } from './material-ui/input/material-input';
 import { MaterialSelect } from './material-ui/select/material-select';
 import { MaterialTable } from './material-ui/table/material-table';
+import { ApartmentPageComponent } from './pages/apartment-page/apartment-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MaterialTable } from './material-ui/table/material-table';
     TenantMenuComponent,
     ApartmentMenuComponent,
     BillComponent,
+    ApartmentPageComponent,
   ],
   imports: [
     BrowserModule,

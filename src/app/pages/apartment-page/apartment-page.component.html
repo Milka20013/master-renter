@@ -1,0 +1,40 @@
+<main>
+  <div class="container" *ngIf="!editing">
+    <div class="header">
+      <div class="placeholder"></div>
+      <div class="name">{{ apartment.name }}</div>
+      <img
+        src="../../../assets/pencil.png"
+        alt="pencil.png"
+        (click)="editing = true"
+      />
+    </div>
+    <div class="info">address : {{ apartment.address }}</div>
+    <div class="info">rent : {{ apartment.rent }}</div>
+  </div>
+  <div class="container" *ngIf="editing">
+    <material-input
+      placeholder="Name"
+      label="Name"
+      [text]="apartment.name"
+      (onChange)="updateName($event)"
+      fontSize="6vmin"
+    />
+    <material-input
+      placeholder="Address"
+      label="Address"
+      [text]="apartment.address"
+      (onChange)="updateAddress($event)"
+      fontSize="xx-large"
+    />
+    <material-input
+      placeholder="Rent"
+      label="Rent"
+      [text]="apartment.rent.toString()"
+      (onChange)="updateRent(+$event)"
+      type="number"
+      fontSize="xx-large"
+    />
+    <material-button (click)="editing = false" inputText="Done" />
+  </div>
+</main>

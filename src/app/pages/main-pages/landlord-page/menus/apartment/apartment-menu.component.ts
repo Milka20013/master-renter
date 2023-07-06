@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApartmentService } from './apartment.service';
 import { Apartment } from 'src/app/models/apartment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'npm-apartment-menu',
@@ -13,7 +14,10 @@ export class ApartmentMenuComponent implements OnInit {
   name: string = '';
   address: string = '';
   rent: number = 0;
-  constructor(private apartmentSercive: ApartmentService) {}
+  constructor(
+    private apartmentSercive: ApartmentService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.apartments = this.apartmentSercive.apartments;
   }
@@ -28,13 +32,22 @@ export class ApartmentMenuComponent implements OnInit {
     this.rent = rent;
   }
 
+  navigateToApartmentPage(apartment: Apartment) {
+    this.router.navigate(['apartment', apartment.id]);
+  }
+
   registerApartment() {
     if (!!!this.name) {
       console.error('Name cannot be empty');
       return;
     }
     this.apartmentSercive.registerApartment(
-      new Apartment(this.name, this.address, this.rent)
+      new Apartment(
+        this.apartmentSercive.newId(),
+        this.name,
+        this.address,
+        this.rent
+      )
     );
   }
 }
