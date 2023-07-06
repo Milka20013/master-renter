@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandlordComponent } from './landlord.component';
+import { BillPageComponent } from './bill-page.component';
 
-describe('LandlordComponent', () => {
-  let component: LandlordComponent;
-  let fixture: ComponentFixture<LandlordComponent>;
+describe('BillPageComponent', () => {
+  let component: BillPageComponent;
+  let fixture: ComponentFixture<BillPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LandlordComponent]
+      declarations: [BillPageComponent]
     });
-    fixture = TestBed.createComponent(LandlordComponent);
+    fixture = TestBed.createComponent(BillPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

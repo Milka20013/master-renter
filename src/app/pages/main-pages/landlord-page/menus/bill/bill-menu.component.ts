@@ -6,15 +6,12 @@ import { BillType } from 'src/app/enums/bill-type';
 import { Apartment } from 'src/app/models/apartment';
 import { ApartmentService } from '../apartment/apartment.service';
 import { BillStatus } from 'src/app/enums/bill-status';
-interface NamedBill {
-  name: string;
-}
 @Component({
   selector: 'npm-bill',
-  templateUrl: './bill.component.html',
-  styleUrls: ['./bill.component.less'],
+  templateUrl: './bill-menu.component.html',
+  styleUrls: ['./bill-menu.component.less'],
 })
-export class BillComponent implements OnInit {
+export class BillMenuComponent implements OnInit {
   bills: Bill[] = [];
   billEnum = BillType;
   billTypes: string[] = [];

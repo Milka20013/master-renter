@@ -3,10 +3,10 @@ import { MenuSelector } from 'src/app/enums/menu-selector';
 
 @Component({
   selector: 'npm-landlord',
-  templateUrl: './landlord.component.html',
-  styleUrls: ['./landlord.component.less'],
+  templateUrl: './landlord-page.component.html',
+  styleUrls: ['./landlord-page.component.less'],
 })
-export class LandlordComponent {
+export class LandlordPageComponent {
   //make the enum visible in html component
   MenuSelector = MenuSelector;
 
