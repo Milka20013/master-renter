@@ -5,6 +5,7 @@ import { ApartmentService } from '../main-pages/landlord-page/menus/apartment/ap
 import { Bill } from 'src/app/models/bill';
 import { BillService } from '../main-pages/landlord-page/menus/bill/bill.service';
 import { BillStatus } from 'src/app/enums/bill-status';
+import { ApartmentUpdater } from 'src/app/ui-utils/updaters/apartment-updater';
 
 @Component({
   selector: 'npm-apartment-page',
@@ -19,22 +20,22 @@ export class ApartmentPageComponent implements OnInit, OnDestroy {
   bills: Bill[] = [];
   billStatus = BillStatus;
 
+  apartmentUpdater: ApartmentUpdater;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private apartmentService: ApartmentService,
     private billService: BillService
-  ) {}
-  updateName(name: string) {
-    this.apartment.name = name;
-  }
-  updateAddress(address: string) {
-    this.apartment.address = address;
-  }
-  updateRent(rent: number) {
-    this.apartment.rent = rent;
+  ) {
+    this.apartmentUpdater = this.initApartmentUpdater();
   }
 
+  initApartmentUpdater(): ApartmentUpdater {
+    return new ApartmentUpdater(
+      new Apartment(this.apartmentService.newId(), '', '', 0)
+    );
+  }
   navigateToLandlordPage() {
     this.router.navigate(['landlord']);
   }

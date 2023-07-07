@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApartmentService } from './apartment.service';
 import { Apartment } from 'src/app/models/apartment';
 import { Router } from '@angular/router';
+import { ApartmentUpdater } from 'src/app/ui-utils/updaters/apartment-updater';
 
 @Component({
   selector: 'npm-apartment-menu',
@@ -10,26 +11,20 @@ import { Router } from '@angular/router';
 })
 export class ApartmentMenuComponent implements OnInit {
   apartments: Apartment[] = [];
-
-  name: string = '';
-  address: string = '';
-  rent: number = 0;
+  apartmentUpdater: ApartmentUpdater;
   constructor(
     private apartmentSercive: ApartmentService,
     private router: Router
-  ) {}
+  ) {
+    this.apartmentUpdater = this.initApartmentUpdater();
+  }
+  initApartmentUpdater(): ApartmentUpdater {
+    return new ApartmentUpdater(
+      new Apartment(this.apartmentSercive.newId(), '', '', 0)
+    );
+  }
   ngOnInit(): void {
     this.apartments = this.apartmentSercive.apartments;
-  }
-
-  updateName(name: string) {
-    this.name = name;
-  }
-  updateAddress(address: string) {
-    this.address = address;
-  }
-  updateRent(rent: number) {
-    this.rent = rent;
   }
 
   navigateToApartmentPage(apartment: Apartment) {
@@ -37,17 +32,6 @@ export class ApartmentMenuComponent implements OnInit {
   }
 
   registerApartment() {
-    if (!!!this.name) {
-      console.error('Name cannot be empty');
-      return;
-    }
-    this.apartmentSercive.registerApartment(
-      new Apartment(
-        this.apartmentSercive.newId(),
-        this.name,
-        this.address,
-        this.rent
-      )
-    );
+    this.apartmentSercive.registerApartment(this.apartmentUpdater.apartment);
   }
 }

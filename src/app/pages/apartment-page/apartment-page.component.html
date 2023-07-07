@@ -18,21 +18,21 @@
       placeholder="Name"
       label="Name"
       [text]="apartment.name"
-      (onChange)="updateName($event)"
+      (onChange)="apartmentUpdater.updateName($event)"
       fontSize="6vmin"
     />
     <material-input
       placeholder="Address"
       label="Address"
       [text]="apartment.address"
-      (onChange)="updateAddress($event)"
+      (onChange)="apartmentUpdater.updateAddress($event)"
       fontSize="xx-large"
     />
     <material-input
       placeholder="Rent"
       label="Rent"
       [text]="apartment.rent.toString()"
-      (onChange)="updateRent(+$event)"
+      (onChange)="apartmentUpdater.updateRent($event)"
       type="number"
       fontSize="xx-large"
     />

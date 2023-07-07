@@ -1,1 +1,102 @@
-<p>bill-page works!</p>
+<main>
+  <material-button inputText="Home" (click)="navigateToLandlordPage()" />
+  <div class="plain-text" *ngIf="!editing">
+    <div class="container">
+      <table>
+        <thead>
+          <td>Type:</td>
+          <td>{{ billType[bill.type] }}</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amount:</td>
+            <td>{{ bill.amount }}</td>
+          </tr>
+          <tr>
+            <td>Due To:</td>
+            <td>{{ bill.dueTo | date : "longDate" }}</td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td>{{ bill.description }}</td>
+          </tr>
+          <tr>
+            <td>Apartment</td>
+            <td>{{ bill.apartment.name }}</td>
+          </tr>
+          <tr>
+            <td>Status:</td>
+            <td>{{ billStatus[bill.status] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <img
+        src="../../../assets/pencil.png"
+        alt="pencil.png"
+        (click)="editing = true"
+      />
+    </div>
+  </div>
+  <div class="container" *ngIf="editing">
+    <table *ngIf="editing">
+      <thead>
+        <td>Type:</td>
+        <td>
+          <bill-type-selector
+            (onChange)="billUpdater.updateType($event)"
+            [selectedType]="bill.type"
+          />
+        </td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Amount:</td>
+          <td>
+            <material-input
+              [text]="bill.amount.toString()"
+              (onChange)="billUpdater.updateAmount($event)"
+              type="number"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Due To:</td>
+          <td>
+            <material-date-picker
+              (onDateChange)="billUpdater.updateDueTo($event)"
+              [selectedValue]="bill.dueTo"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td>
+            <material-input
+              (onChange)="billUpdater.updateDescription($event)"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Apartment</td>
+          <td>
+            <apartment-selector
+              (onChange)="billUpdater.updateApartment($event)"
+              [selectedApartment]="bill.apartment"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Status:</td>
+          <td>
+            <bill-status-selector
+              [selectedStatus]="bill.status"
+              (onChange)="billUpdater.updateStatus($event)"
+            />
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <material-button inputText="Done" (click)="editing = false" *ngIf="editing" />
+</main>

@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
 })
 export class MaterialSelect {
+  @Input() selected: any;
   @Input() options: any[] = [];
   @Input() placeHolder: string = 'Options';
   @Input() width: string = '15vw';

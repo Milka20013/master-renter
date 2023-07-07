@@ -21,6 +21,9 @@ import { MaterialSelect } from './material-ui/select/material-select';
 import { MaterialTable } from './material-ui/table/material-table';
 import { ApartmentPageComponent } from './pages/apartment-page/apartment-page.component';
 import { BillPageComponent } from './pages/bill-page/bill-page.component';
+import { ApartmentSelectorComponent } from './ui-utils/selectors/apartment-selector/apartment-selector.component';
+import { BillStatusSelectorComponent } from './ui-utils/selectors/bill-selector/status/bill-status-selector.component';
+import { BillTypeSelectorComponent } from './ui-utils/selectors/bill-selector/type/bill-type-selector.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { BillPageComponent } from './pages/bill-page/bill-page.component';
     ApartmentPageComponent,
     TenantPageComponent,
     BillPageComponent,
+    ApartmentSelectorComponent,
+    BillStatusSelectorComponent,
+    BillTypeSelectorComponent,
   ],
   imports: [
     BrowserModule,

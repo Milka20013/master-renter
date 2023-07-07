@@ -19,7 +19,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   ],
 })
 export class MaterialDatePicker {
-  @Input() placeHolder: string = 'Choose a date';
+  @Input() placeHolder: any = 'Choose a date';
+  @Input() selectedValue: Date = new Date(Date.now());
   @Input() width: string = '15vw';
   @Output()
   onDateChange: EventEmitter<MatDatepickerInputEvent<Date>> = new EventEmitter<

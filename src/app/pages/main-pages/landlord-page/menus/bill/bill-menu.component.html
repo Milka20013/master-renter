@@ -1,35 +1,18 @@
 <div class="register">
   <div class="header">Register a bill</div>
-  <material-select
-    [options]="billTypes"
-    placeHolder="Bill type"
-    (onChange)="updateType($event)"
-  />
+  <bill-type-selector (onChange)="billUpdater.updateType($event)" />
 
   <material-input
-    class="input"
-    id="amount-input"
-    placeholder="Amount"
-    label="Amount"
-    (onChange)="updateAmount(+$event)"
+    (onChange)="billUpdater.updateAmount($event)"
     type="number"
+    label="Amount"
   />
-  <material-date-picker
-    (onDateChange)="updateDueTo($event)"
-    placeHolder="Due To"
-  />
+  <material-date-picker (onDateChange)="billUpdater.updateDueTo($event)" />
   <material-input
-    class="input"
-    id="description-input"
-    placeholder="Description"
+    (onChange)="billUpdater.updateDescription($event)"
     label="Description"
-    (onChange)="updateDescription($event)"
   />
-  <material-select
-    placeHolder="Apartment"
-    [options]="apartmentNames"
-    (onChange)="updateApartment($event)"
-  />
+  <apartment-selector (onChange)="billUpdater.updateApartment($event)" />
   <material-button (click)="registerBill()" inputText="Register" />
 </div>
 <h2>Bills</h2>
@@ -47,7 +30,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let bill of bills; index as i" (click)="onRowClick(i)">
-        <td>{{ billEnum[bill.type] }}</td>
+        <td>{{ billType[bill.type] }}</td>
         <td>{{ bill.amount }} $</td>
         <td>{{ bill.dueTo | date : "longDate" }}</td>
         <td>{{ bill.description }}</td>

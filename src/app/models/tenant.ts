@@ -1,18 +1,21 @@
 import { Apartment } from './apartment';
 
 export class Tenant {
+  public id: number;
   public name: string;
   public entryDate: Date;
   public exitDate: Date;
   public rent: number;
   public apartment: Apartment;
   constructor(
+    id: number,
     name: string,
     entryDate: Date,
     exitDate: Date,
     rent: number,
     apartment: Apartment
   ) {
+    this.id = id;
     this.name = name;
     this.entryDate = entryDate;
     this.exitDate = exitDate;

@@ -7,6 +7,8 @@ import { TenantService } from './tenant.service';
 import { Tenant } from 'src/app/models/tenant';
 import { ApartmentService } from '../apartment/apartment.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { TenantUpdater } from 'src/app/ui-utils/updaters/tenant-updater';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'npm-tenant-menu',
@@ -18,62 +20,46 @@ export class TenantMenuComponent implements OnInit {
   token = Token.Empty;
   apartmentNames: string[] = [];
   tenants: Tenant[] = [];
+  tenantUpdater: TenantUpdater;
 
-  name: string = '';
-  entryDate: Date = new Date();
-  exitDate: Date = new Date();
-  rent: number = 0;
-  apartment: Apartment = Apartment.None;
   constructor(
+    private router: Router,
     private dbService: DbService,
     private apartmentService: ApartmentService,
     private tenantService: TenantService
-  ) {}
+  ) {
+    this.tenantUpdater = this.initTenantUpdater();
+  }
+
+  initTenantUpdater(): TenantUpdater {
+    return new TenantUpdater(
+      new Tenant(
+        this.tenantService.newId(),
+        '',
+        new Date(),
+        new Date(),
+        0,
+        Apartment.None
+      ),
+      this.apartmentService
+    );
+  }
   ngOnInit(): void {
     this.apartmentNames = this.apartmentService.apartments.map((x) => x.name);
     this.tenants = this.tenantService.tenants;
+  }
+
+  onRowClicked(tenant: Tenant) {
+    this.router.navigate(['tenant', tenant.id]);
   }
   generateToken() {
     this.token = this.dbService.generateToken(UserType.Tenant);
     this.showToken = true;
   }
 
-  updateEntryDate(event: MatDatepickerInputEvent<Date>) {
-    if (event.value == null) {
-      return;
-    }
-    this.entryDate = event.value;
-  }
-  updateExitDate(event: MatDatepickerInputEvent<Date>) {
-    if (event.value == null) {
-      return;
-    }
-    this.exitDate = event.value;
-  }
-  updateName(name: string) {
-    this.name = name;
-  }
-  updateRent(rent: number) {
-    this.rent = rent;
-  }
-
-  updateApartment(apartmentName: string) {
-    this.apartment = this.apartmentService.getApartment(apartmentName);
-  }
   registerTenant() {
-    if (!!!this.entryDate.getDate() || !!!this.exitDate.getDate()) {
-      //one or more of the dates are invalid
-      return;
-    }
-    this.tenantService.registerTenant(
-      new Tenant(
-        this.name,
-        this.entryDate,
-        this.exitDate,
-        this.rent,
-        this.apartment
-      )
-    );
+    this.tenantService.registerTenant(this.tenantUpdater.tenant);
+    this.tenantUpdater = this.initTenantUpdater();
   }
 
   unregisterTenant(tenant: Tenant) {

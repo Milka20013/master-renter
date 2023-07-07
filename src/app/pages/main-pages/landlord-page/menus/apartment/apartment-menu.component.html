@@ -1,25 +1,19 @@
 <div class="register">
   <div class="header">Register an apartment</div>
   <material-input
-    class="input"
-    id="name-input"
     placeholder="Name"
     label="Name"
-    (onChange)="updateName($event)"
+    (onChange)="apartmentUpdater.updateName($event)"
   />
   <material-input
-    class="input"
-    id="address-input"
     placeholder="Address"
     label="Address"
-    (onChange)="updateAddress($event)"
+    (onChange)="apartmentUpdater.updateAddress($event)"
   />
   <material-input
-    class="input"
-    id="rent-input"
     placeholder="Rent"
     label="Rent"
-    (onChange)="updateRent(+$event)"
+    (onChange)="apartmentUpdater.updateRent(+$event)"
     type="number"
   />
   <material-button (click)="registerApartment()" inputText="Register" />

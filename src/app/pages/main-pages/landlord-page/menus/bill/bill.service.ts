@@ -9,6 +9,7 @@ import { Bill } from 'src/app/models/bill';
 export class BillService {
   private _bills: Bill[] = [
     new Bill(
+      this.newId(),
       BillType.Electric,
       400,
       new Date('2023/07/30'),
@@ -18,6 +19,15 @@ export class BillService {
   ];
   constructor() {}
 
+  public newId(): number {
+    let maxId = -1;
+    for (let index = 0; index < this._bills?.length; index++) {
+      if (maxId < this._bills[index].id) {
+        maxId = this._bills[index].id;
+      }
+    }
+    return maxId + 1;
+  }
   registerBill(bill: Bill) {
     this._bills.push(bill);
   }
@@ -32,6 +42,10 @@ export class BillService {
       this._bills[index].checkStatus();
     }
     return this._bills;
+  }
+
+  getBillById(id: number): Bill {
+    return this._bills.filter((x) => x.id == id)[0];
   }
 
   getBills(apartment: Apartment): Bill[] {

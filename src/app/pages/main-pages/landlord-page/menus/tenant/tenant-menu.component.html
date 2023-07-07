@@ -7,33 +7,25 @@
   />
   <div *ngIf="showToken">Your generated token: "{{ token.guid }}"</div>
   <material-input
-    class="input"
-    id="name-input"
     placeholder="Name"
     label="Name"
-    (onChange)="updateName($event)"
+    (onChange)="tenantUpdater.updateName($event)"
   />
   <material-date-picker
-    (onDateChange)="updateEntryDate($event)"
+    (onDateChange)="tenantUpdater.updateEntryDate($event)"
     placeHolder="Entry date"
   />
   <material-date-picker
-    (onDateChange)="updateExitDate($event)"
+    (onDateChange)="tenantUpdater.updateExitDate($event)"
     placeHolder="Exit date"
   />
   <material-input
-    class="input"
-    id="rent-input"
     placeholder="Rent"
     label="Rent"
-    (onChange)="updateRent(+$event)"
+    (onChange)="tenantUpdater.updateRent($event)"
     type="number"
   />
-  <material-select
-    [options]="apartmentNames"
-    placeHolder="Apartment"
-    (onChange)="updateApartment($event)"
-  />
+  <apartment-selector (onChange)="tenantUpdater.updateApartment($event)" />
   <material-button (click)="registerTenant()" inputText="Register" />
 </div>
 
@@ -50,7 +42,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tenant of tenants">
+      <tr *ngFor="let tenant of tenants" (click)="onRowClicked(tenant)">
         <td>{{ tenant.name }}</td>
         <td>{{ tenant.entryDate | date : "longDate" }}</td>
         <td>{{ tenant.exitDate | date : "longDate" }}</td>

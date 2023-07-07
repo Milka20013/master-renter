@@ -1,0 +1,6 @@
+<material-select
+  [options]="billStatuses"
+  placeHolder="Bill status"
+  (onChange)="onChanged($event)"
+  [selected]="billStatus[selectedStatus]"
+/>

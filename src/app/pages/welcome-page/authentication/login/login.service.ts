@@ -32,7 +32,7 @@ export class LoginService {
           console.error('logged in as none ?');
           break;
         case UserType.Tenant:
-          this.router.navigate(['tenant']);
+          this.router.navigate(['tenantUser']);
           break;
         case UserType.Landlord:
           this.router.navigate(['landlord']);

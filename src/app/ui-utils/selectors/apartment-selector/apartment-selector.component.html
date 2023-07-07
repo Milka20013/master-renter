@@ -1,0 +1,6 @@
+<material-select
+  [options]="apartmentNames"
+  placeHolder="Apartment"
+  (onChange)="onChanged($event)"
+  [selected]="selectedApartment.name"
+/>
