@@ -19,16 +19,10 @@
     (onDateChange)="tenantUpdater.updateExitDate($event)"
     placeHolder="Exit date"
   />
-  <material-input
-    placeholder="Rent"
-    label="Rent"
-    (onChange)="tenantUpdater.updateRent($event)"
-    type="number"
-  />
   <apartment-selector (onChange)="tenantUpdater.updateApartment($event)" />
   <material-button (click)="registerTenant()" inputText="Register" />
 </div>
-
+<h2>Tenants</h2>
 <div class="container">
   <table class="table" *ngIf="tenants.length">
     <thead>
@@ -48,12 +42,8 @@
         <td>{{ tenant.exitDate | date : "longDate" }}</td>
         <td>{{ tenant.apartment.name }}</td>
         <!--hard coded currency type !!-->
-        <td>{{ tenant.rent }} $</td>
+        <td>{{ tenant.apartment.rent }} $</td>
         <td>{{ tenant.remainingTime | number : "0.0-2" }} days</td>
-        <td>
-          <button (click)="unregisterTenant(tenant)">Remove tenant</button>
-          <button (click)="modifyTenant(tenant)">Modify</button>
-        </td>
       </tr>
     </tbody>
   </table>

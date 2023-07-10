@@ -6,8 +6,8 @@ import { Apartment } from 'src/app/models/apartment';
 })
 export class ApartmentService {
   private _apartments: Apartment[] = [
-    new Apartment(1, 'test1', 'asd', 4),
-    new Apartment(2, 'test2', 'asd', 4),
+    new Apartment(1, 'Apartment 1', 'address 1', 4),
+    new Apartment(2, 'Apartment 2', 'address 2', 6),
   ];
   constructor() {}
 

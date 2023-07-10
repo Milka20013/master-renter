@@ -44,4 +44,15 @@ export class BillUpdater {
       this.bill.status = status;
     }
   }
+
+  refresh(id: number) {
+    this.bill = new Bill(
+      id,
+      this.bill.type,
+      this.bill.amount,
+      this.bill.dueTo,
+      this.bill.description,
+      this.bill.apartment
+    );
+  }
 }

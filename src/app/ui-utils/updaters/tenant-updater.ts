@@ -33,7 +33,14 @@ export class TenantUpdater {
       this.tenant.apartment = apartment;
     }
   }
-  updateRent(rent: string | number) {
-    this.tenant.rent = +rent;
+
+  refresh(id: number) {
+    this.tenant = new Tenant(
+      id,
+      this.tenant.name,
+      this.tenant.entryDate,
+      this.tenant.exitDate,
+      this.tenant.apartment
+    );
   }
 }

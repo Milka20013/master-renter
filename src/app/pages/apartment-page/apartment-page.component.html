@@ -1,66 +1,86 @@
 <main>
   <material-button inputText="Home" (click)="navigateToLandlordPage()" />
-  <div class="container" *ngIf="!editing">
-    <div class="header">
-      <div class="placeholder"></div>
-      <div class="name">{{ apartment.name }}</div>
+  <div class="plain-text" *ngIf="!editing">
+    <div class="container">
+      <table>
+        <thead>
+          <td>Name:</td>
+          <td>{{ apartment.name }}</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Address:</td>
+            <td>{{ apartment.address }}</td>
+          </tr>
+          <tr>
+            <td>Rent</td>
+            <td>{{ apartment.rent }}</td>
+          </tr>
+        </tbody>
+      </table>
       <img
         src="../../../assets/pencil.png"
         alt="pencil.png"
         (click)="editing = true"
       />
     </div>
-    <div class="info">address : {{ apartment.address }}</div>
-    <div class="info">rent : {{ apartment.rent }}</div>
   </div>
   <div class="container" *ngIf="editing">
-    <material-input
-      placeholder="Name"
-      label="Name"
-      [text]="apartment.name"
-      (onChange)="apartmentUpdater.updateName($event)"
-      fontSize="6vmin"
-    />
-    <material-input
-      placeholder="Address"
-      label="Address"
-      [text]="apartment.address"
-      (onChange)="apartmentUpdater.updateAddress($event)"
-      fontSize="xx-large"
-    />
-    <material-input
-      placeholder="Rent"
-      label="Rent"
-      [text]="apartment.rent.toString()"
-      (onChange)="apartmentUpdater.updateRent($event)"
-      type="number"
-      fontSize="xx-large"
-    />
-    <material-button (click)="editing = false" inputText="Done" />
+    <table *ngIf="editing">
+      <thead>
+        <td>Name:</td>
+        <td>
+          <material-input
+            [text]="apartment.name"
+            (onChange)="apartmentUpdater.updateName($event)"
+          />
+        </td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Address:</td>
+          <td>
+            <material-input
+              [text]="apartment.address"
+              (onChange)="apartmentUpdater.updateAddress($event)"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Rent:</td>
+          <td>
+            <material-input
+              [text]="apartment.rent.toString()"
+              (onChange)="apartmentUpdater.updateRent($event)"
+              type="number"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <material-button inputText="Done" (click)="editing = false" *ngIf="editing" />
   <div *ngIf="bills.length">
     <h2>Bills</h2>
-    <div class="container">
-      <table class="table">
-        <thead>
-          <tr>
-            <td>Type</td>
-            <td>Amount</td>
-            <td>Due To</td>
-            <td>Description</td>
-            <td>Status</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let bill of bills; index as i">
-            <td>{{ bill.type }}</td>
-            <td>{{ bill.amount }} $</td>
-            <td>{{ bill.dueTo | date : "longDate" }}</td>
-            <td>{{ bill.description }}</td>
-            <td>{{ billStatus[bill.status] }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table-select">
+      <thead>
+        <tr>
+          <td>Type</td>
+          <td>Amount</td>
+          <td>Due To</td>
+          <td>Description</td>
+          <td>Status</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bill of bills; index as i">
+          <td>{{ bill.type }}</td>
+          <td>{{ bill.amount }} $</td>
+          <td>{{ bill.dueTo | date : "longDate" }}</td>
+          <td>{{ bill.description }}</td>
+          <td>{{ billStatus[bill.status] }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </main>

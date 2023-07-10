@@ -38,11 +38,13 @@ export class TenantMenuComponent implements OnInit {
         '',
         new Date(),
         new Date(),
-        0,
         Apartment.None
       ),
       this.apartmentService
     );
+  }
+  refreshTenantUpdater() {
+    this.tenantUpdater.refresh(this.tenantService.newId());
   }
   ngOnInit(): void {
     this.apartmentNames = this.apartmentService.apartments.map((x) => x.name);
@@ -59,12 +61,6 @@ export class TenantMenuComponent implements OnInit {
 
   registerTenant() {
     this.tenantService.registerTenant(this.tenantUpdater.tenant);
-    this.tenantUpdater = this.initTenantUpdater();
+    this.refreshTenantUpdater();
   }
-
-  unregisterTenant(tenant: Tenant) {
-    this.tenantService.unregisterTenant(tenant);
-  }
-
-  modifyTenant(tenant: Tenant) {}
 }

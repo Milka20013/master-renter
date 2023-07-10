@@ -16,4 +16,13 @@ export class ApartmentUpdater {
   updateRent(rent: number | string) {
     this.apartment.rent = +rent;
   }
+
+  refresh(id: number) {
+    this.apartment = new Apartment(
+      id,
+      this.apartment.name,
+      this.apartment.address,
+      this.apartment.rent
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apartment } from 'src/app/models/apartment';
 import { Tenant } from 'src/app/models/tenant';
+import { ApartmentService } from '../apartment/apartment.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,19 +13,17 @@ export class TenantService {
       'asd',
       new Date('2000/01/01'),
       new Date('2000/02/01'),
-      6,
-      Apartment.None
+      this.apartmentService.getApartmentById(1)
     ),
     new Tenant(
       1,
       'asd2',
       new Date('2000/01/01'),
       new Date('2000/02/01'),
-      10,
-      Apartment.None
+      this.apartmentService.getApartmentById(2)
     ),
   ];
-  constructor() {}
+  constructor(private apartmentService: ApartmentService) {}
 
   public newId(): number {
     let maxId = -1;

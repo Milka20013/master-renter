@@ -8,7 +8,6 @@ import { AuthenticationComponent } from './pages/welcome-page/authentication/aut
 import { LoginComponent } from './pages/welcome-page/authentication/login/login.component';
 import { SignUpComponent } from './pages/welcome-page/authentication/sign-up/sign-up.component';
 import { LandlordPageComponent } from './pages/main-pages/landlord-page/landlord-page.component';
-import { TenantPageComponent } from './pages/main-pages/tenant-page/tenant-page.component';
 import { LandlordHeaderComponent } from './pages/main-pages/landlord-page/header/landlord-header.component';
 import { ApartmentMenuComponent } from './pages/main-pages/landlord-page/menus/apartment/apartment-menu.component';
 import { TenantMenuComponent } from './pages/main-pages/landlord-page/menus/tenant/tenant-menu.component';
@@ -24,6 +23,8 @@ import { BillPageComponent } from './pages/bill-page/bill-page.component';
 import { ApartmentSelectorComponent } from './ui-utils/selectors/apartment-selector/apartment-selector.component';
 import { BillStatusSelectorComponent } from './ui-utils/selectors/bill-selector/status/bill-status-selector.component';
 import { BillTypeSelectorComponent } from './ui-utils/selectors/bill-selector/type/bill-type-selector.component';
+import { TenantPageComponent } from './pages/tenant-page/tenant-page.component';
+import { TenantUserPageComponent } from './pages/main-pages/tenant-page/tenant-user-page.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { BillTypeSelectorComponent } from './ui-utils/selectors/bill-selector/ty
     ApartmentMenuComponent,
     BillMenuComponent,
     ApartmentPageComponent,
-    TenantPageComponent,
+    TenantUserPageComponent,
     BillPageComponent,
     ApartmentSelectorComponent,
     BillStatusSelectorComponent,

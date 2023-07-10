@@ -4,16 +4,6 @@ main {
   align-items: center;
   gap: 1.5vh;
 }
-.container {
-  margin-top: 1.5vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  gap: 1.5vh;
-}
 .placeholder {
   height: min(50px, 15vmin);
   width: min(50px, 15vmin);
@@ -21,38 +11,44 @@ main {
 img {
   height: min(50px, 15vmin);
   width: min(50px, 15vmin);
+  align-self: flex-start;
   cursor: pointer;
 }
 .header {
   display: flex;
 }
-.name {
-  font-size: 6vmin;
-  text-align: center;
-  margin-bottom: 2.5vh;
-  margin-top: 5vh;
-  justify-self: center;
+.container {
+  margin-top: 1.5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1.5vh;
 }
-.info {
-  font-size: xx-large;
+td {
+  font-size: x-large;
 }
-
-.table {
+.table-select {
   width: 100%;
 }
-
-tbody tr {
+.table-select tbody tr {
   padding-bottom: 2vh;
   cursor: pointer;
 }
 
-td {
+.table-select td {
   padding-left: 0.5vw;
   padding-right: 0.5vw;
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
 }
 
-tbody tr:hover {
+.table-select tbody tr:hover {
   box-shadow: 0 0 0 2px #d0d0d0;
+}
+
+h2 {
+  text-align: center;
+  border-bottom: 1px solid;
 }

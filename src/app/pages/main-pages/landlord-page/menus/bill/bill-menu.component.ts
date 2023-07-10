@@ -43,6 +43,9 @@ export class BillMenuComponent implements OnInit {
       this.apartmentService
     );
   }
+  refreshBillUpdater() {
+    this.billUpdater.refresh(this.billService.newId());
+  }
   ngOnInit(): void {
     this.bills = this.billService.bills;
     this.billTypes = Object.keys(this.billType).filter((x) => !!!+x);
@@ -52,6 +55,6 @@ export class BillMenuComponent implements OnInit {
   }
   registerBill() {
     this.billService.registerBill(this.billUpdater.bill);
-    this.billUpdater = this.initBillUpdater();
+    this.refreshBillUpdater();
   }
 }

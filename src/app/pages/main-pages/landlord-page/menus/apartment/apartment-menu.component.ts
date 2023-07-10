@@ -23,6 +23,9 @@ export class ApartmentMenuComponent implements OnInit {
       new Apartment(this.apartmentSercive.newId(), '', '', 0)
     );
   }
+  refreshApartmentUpdater() {
+    this.apartmentUpdater.refresh(this.apartmentSercive.newId());
+  }
   ngOnInit(): void {
     this.apartments = this.apartmentSercive.apartments;
   }
@@ -33,5 +36,6 @@ export class ApartmentMenuComponent implements OnInit {
 
   registerApartment() {
     this.apartmentSercive.registerApartment(this.apartmentUpdater.apartment);
+    this.refreshApartmentUpdater();
   }
 }

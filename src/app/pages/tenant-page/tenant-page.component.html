@@ -1,1 +1,94 @@
-<p>tenant-page works!</p>
+<main>
+  <material-button inputText="Home" (click)="navigateToLandlordPage()" />
+  <div class="plain-text" *ngIf="!editing">
+    <div class="container">
+      <table>
+        <thead>
+          <td>Name:</td>
+          <td>{{ tenant.name }}</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Entry date:</td>
+            <td>{{ tenant.entryDate | date : "longDate" }}</td>
+          </tr>
+          <tr>
+            <td>Exit date:</td>
+            <td>{{ tenant.exitDate | date : "longDate" }}</td>
+          </tr>
+          <tr>
+            <td>Rent:</td>
+            <td>{{ tenant.apartment.rent }}</td>
+          </tr>
+          <tr>
+            <td>Apartment</td>
+            <td>{{ tenant.apartment.name }}</td>
+          </tr>
+          <tr>
+            <td>Remaining time of occupation:</td>
+            <td>{{ tenant.remainingTime | number : "0.0-2" }} days</td>
+          </tr>
+        </tbody>
+      </table>
+      <img
+        src="../../../assets/pencil.png"
+        alt="pencil.png"
+        (click)="editing = true"
+      />
+    </div>
+  </div>
+  <div class="container" *ngIf="editing">
+    <table *ngIf="editing">
+      <thead>
+        <td>Name:</td>
+        <td>
+          <material-input
+            [text]="tenant.name"
+            (onChange)="tenantUpdater.updateName($event)"
+          />
+        </td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Entry date:</td>
+          <td>
+            <material-date-picker
+              (onDateChange)="tenantUpdater.updateEntryDate($event)"
+              [selectedValue]="tenant.entryDate"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Exit date:</td>
+          <td>
+            <material-date-picker
+              (onDateChange)="tenantUpdater.updateExitDate($event)"
+              [selectedValue]="tenant.exitDate"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Rent:</td>
+          <td>
+            {{ tenant.apartment.rent }}
+          </td>
+        </tr>
+        <tr>
+          <td>Apartment</td>
+          <td>
+            <apartment-selector
+              (onChange)="tenantUpdater.updateApartment($event)"
+              [selectedApartment]="tenant.apartment"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Remaining time of occupation:</td>
+          <td>{{ tenant.remainingTime | number : "0.0-2" }} days</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <material-button inputText="Done" (click)="editing = false" *ngIf="editing" />
+</main>

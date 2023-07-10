@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BillType } from 'src/app/enums/bill-type';
 import { Apartment } from 'src/app/models/apartment';
 import { Bill } from 'src/app/models/bill';
+import { ApartmentService } from '../apartment/apartment.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,10 @@ export class BillService {
       400,
       new Date('2023/07/30'),
       'You have to pay lmao',
-      Apartment.None
+      this.apartmentService.getApartmentById(1)
     ),
   ];
-  constructor() {}
+  constructor(private apartmentService: ApartmentService) {}
 
   public newId(): number {
     let maxId = -1;
