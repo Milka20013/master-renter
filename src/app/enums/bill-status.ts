@@ -1,5 +1,5 @@
 export enum BillStatus {
-  Registered,
+  Registered = 1,
   Pending,
   Late,
   Paid,

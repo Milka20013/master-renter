@@ -12,7 +12,7 @@ export class BillUpdater {
   }
   updateType(type: string | BillType) {
     if (typeof type == 'string') {
-      this.bill.type = <BillType>(<unknown>type);
+      this.bill.type = BillType[type as keyof typeof BillType];
     } else {
       this.bill.type = type;
     }
@@ -39,7 +39,7 @@ export class BillUpdater {
   }
   updateStatus(status: string | BillStatus) {
     if (typeof status == 'string') {
-      this.bill.status = <BillStatus>(<unknown>status);
+      this.bill.status = BillStatus[status as keyof typeof BillStatus];
     } else {
       this.bill.status = status;
     }

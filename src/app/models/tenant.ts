@@ -24,6 +24,9 @@ export class Tenant {
   }
 
   public get remainingTime(): number {
+    if (this.exitDate.getTime() < Date.now()) {
+      return 0;
+    }
     return (
       (this.exitDate.getTime() - this.entryDate.getTime()) / (1000 * 3600 * 24)
     );
