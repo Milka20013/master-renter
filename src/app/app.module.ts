@@ -25,6 +25,7 @@ import { BillStatusSelectorComponent } from './ui-utils/selectors/bill-selector/
 import { BillTypeSelectorComponent } from './ui-utils/selectors/bill-selector/type/bill-type-selector.component';
 import { TenantPageComponent } from './pages/tenant-page/tenant-page.component';
 import { TenantUserPageComponent } from './pages/main-pages/tenant-page/tenant-user-page.component';
+import { BillTableComponent } from './ui-utils/tables/bill-table.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { TenantUserPageComponent } from './pages/main-pages/tenant-page/tenant-u
     ApartmentSelectorComponent,
     BillStatusSelectorComponent,
     BillTypeSelectorComponent,
+    BillTableComponent,
   ],
   imports: [
     BrowserModule,

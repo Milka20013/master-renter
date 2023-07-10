@@ -4,6 +4,8 @@ import { Tenant } from 'src/app/models/tenant';
 import { TenantService } from '../main-pages/landlord-page/menus/tenant/tenant.service';
 import { TenantUpdater } from 'src/app/ui-utils/updaters/tenant-updater';
 import { ApartmentService } from '../main-pages/landlord-page/menus/apartment/apartment.service';
+import { BillStatus } from 'src/app/enums/bill-status';
+import { BillType } from 'src/app/enums/bill-type';
 
 @Component({
   selector: 'npm-tenant',
@@ -28,6 +30,11 @@ export class TenantPageComponent implements OnInit {
     });
     this.tenant = this.tenantService.getTenantById(this.id);
     this.tenantUpdater = new TenantUpdater(this.tenant, this.apartmentService);
+    if (this.tenant.isRentDue()) {
+      console.log('due');
+    } else {
+      console.log('no');
+    }
   }
 
   navigateToLandlordPage() {

@@ -17,16 +17,11 @@ export class BillMenuComponent implements OnInit {
   bills: Bill[] = [];
   billUpdater: BillUpdater;
 
-  billType = BillType;
-  billTypes: string[] = [];
-  billStatus = BillStatus;
-
   constructor(
     private billService: BillService,
     private apartmentService: ApartmentService,
     private router: Router
   ) {
-    //this way is to tell the compiler that the updater is set
     this.billUpdater = this.initBillUpdater();
   }
 
@@ -48,7 +43,6 @@ export class BillMenuComponent implements OnInit {
   }
   ngOnInit(): void {
     this.bills = this.billService.bills;
-    this.billTypes = Object.keys(this.billType).filter((x) => !!!+x);
   }
   onRowClick(i: number) {
     this.router.navigate(['bill', i]);

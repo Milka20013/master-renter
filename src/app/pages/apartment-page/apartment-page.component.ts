@@ -18,7 +18,6 @@ export class ApartmentPageComponent implements OnInit, OnDestroy {
   apartment: Apartment = Apartment.None;
   editing: boolean = false;
   bills: Bill[] = [];
-  billStatus = BillStatus;
 
   apartmentUpdater: ApartmentUpdater;
 

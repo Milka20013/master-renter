@@ -60,27 +60,5 @@
     </table>
   </div>
   <material-button inputText="Done" (click)="editing = false" *ngIf="editing" />
-  <div *ngIf="bills.length">
-    <h2>Bills</h2>
-    <table class="table-select">
-      <thead>
-        <tr>
-          <td>Type</td>
-          <td>Amount</td>
-          <td>Due To</td>
-          <td>Description</td>
-          <td>Status</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bill of bills; index as i">
-          <td>{{ bill.type }}</td>
-          <td>{{ bill.amount }} $</td>
-          <td>{{ bill.dueTo | date : "longDate" }}</td>
-          <td>{{ bill.description }}</td>
-          <td>{{ billStatus[bill.status] }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <bill-table [bills]="bills" />
 </main>

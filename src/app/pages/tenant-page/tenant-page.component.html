@@ -91,4 +91,5 @@
     </table>
   </div>
   <material-button inputText="Done" (click)="editing = false" *ngIf="editing" />
+  <bill-table [bills]="tenant.bills" />
 </main>

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Apartment } from 'src/app/models/apartment';
 import { Tenant } from 'src/app/models/tenant';
 import { ApartmentService } from '../apartment/apartment.service';
+import { Bill } from 'src/app/models/bill';
+import { BillService } from '../bill/bill.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +25,10 @@ export class TenantService {
       this.apartmentService.getApartmentById(2)
     ),
   ];
-  constructor(private apartmentService: ApartmentService) {}
+  constructor(
+    private apartmentService: ApartmentService,
+    private billService: BillService
+  ) {}
 
   public newId(): number {
     let maxId = -1;
@@ -47,6 +52,14 @@ export class TenantService {
   }
 
   public get tenants(): Tenant[] {
+    for (const tenant of this._tenants) {
+      let dueTo = tenant.isRentDue();
+      if (!!dueTo) {
+        tenant.bills.push(
+          this.billService.generateRentBill(tenant.apartment, dueTo)
+        );
+      }
+    }
     return this._tenants;
   }
 }

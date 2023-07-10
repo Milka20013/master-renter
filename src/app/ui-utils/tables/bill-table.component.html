@@ -1,0 +1,25 @@
+<div *ngIf="bills.length">
+  <h2>Bills</h2>
+  <table class="table-select">
+    <thead>
+      <tr>
+        <td>Type</td>
+        <td>Amount</td>
+        <td>Due To</td>
+        <td>Description</td>
+        <td *ngIf="showApartment">Apartment</td>
+        <td>Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bill of bills; index as i" (click)="onRowClicked(bill)">
+        <td>{{ billType[bill.type] }}</td>
+        <td>{{ bill.amount }} $</td>
+        <td>{{ bill.dueTo | date : "longDate" }}</td>
+        <td>{{ bill.description }}</td>
+        <td *ngIf="showApartment">{{ bill.apartment.name }}</td>
+        <td>{{ billStatus[bill.status] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

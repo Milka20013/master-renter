@@ -15,28 +15,4 @@
   <apartment-selector (onChange)="billUpdater.updateApartment($event)" />
   <material-button (click)="registerBill()" inputText="Register" />
 </div>
-<h2>Bills</h2>
-<div class="container">
-  <table class="table" *ngIf="bills.length">
-    <thead>
-      <tr>
-        <td>Type</td>
-        <td>Amount</td>
-        <td>Due To</td>
-        <td>Description</td>
-        <td>Apartment</td>
-        <td>Status</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let bill of bills; index as i" (click)="onRowClick(i)">
-        <td>{{ billType[bill.type] }}</td>
-        <td>{{ bill.amount }} $</td>
-        <td>{{ bill.dueTo | date : "longDate" }}</td>
-        <td>{{ bill.description }}</td>
-        <td>{{ bill.apartment.name }}</td>
-        <td>{{ billStatus[bill.status] }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<bill-table [bills]="bills" [showApartment]="true" />

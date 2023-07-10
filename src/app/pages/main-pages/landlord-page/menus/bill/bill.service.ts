@@ -52,4 +52,17 @@ export class BillService {
   getBills(apartment: Apartment): Bill[] {
     return this.bills.filter((x) => x.apartment == apartment);
   }
+
+  generateRentBill(apartment: Apartment, dueTo: Date): Bill {
+    let rentBill = new Bill(
+      this.newId(),
+      BillType.Rent,
+      apartment.rent,
+      dueTo,
+      'Rent',
+      apartment
+    );
+    this.registerBill(rentBill);
+    return rentBill;
+  }
 }
