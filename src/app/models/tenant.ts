@@ -9,6 +9,13 @@ export class Tenant {
   public exitDate: Date;
   public apartment: Apartment;
   public bills: Bill[] = [];
+  public static None = new Tenant(
+    0,
+    'None',
+    new Date(),
+    new Date(),
+    Apartment.None
+  );
   constructor(
     id: number,
     name: string,
@@ -50,5 +57,14 @@ export class Tenant {
       return new Date(dueTo.getTime() + 1000 * 3600 * 24);
     }
     return false;
+  }
+
+  registerBill(bill: Bill) {
+    this.bills.push(bill);
+  }
+
+  unregisterBill(bill: Bill) {
+    const index = this.bills.indexOf(bill);
+    this.bills.splice(index, 1);
   }
 }

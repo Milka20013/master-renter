@@ -3,6 +3,7 @@ import { BillType } from 'src/app/enums/bill-type';
 import { Apartment } from 'src/app/models/apartment';
 import { Bill } from 'src/app/models/bill';
 import { ApartmentService } from '../apartment/apartment.service';
+import { Tenant } from 'src/app/models/tenant';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class BillService {
       400,
       new Date('2023/07/30'),
       'You have to pay lmao',
+      Tenant.None,
       this.apartmentService.getApartmentById(1)
     ),
   ];
@@ -31,9 +33,11 @@ export class BillService {
   }
   registerBill(bill: Bill) {
     this._bills.push(bill);
+    bill.tenant.registerBill(bill);
   }
 
   unRegisterBill(bill: Bill) {
+    bill.tenant.unregisterBill(bill);
     const index = this._bills.indexOf(bill);
     this._bills.splice(index, 1);
   }
@@ -53,14 +57,15 @@ export class BillService {
     return this.bills.filter((x) => x.apartment == apartment);
   }
 
-  generateRentBill(apartment: Apartment, dueTo: Date): Bill {
+  generateRentBill(tenant: Tenant, dueTo: Date): Bill {
     let rentBill = new Bill(
       this.newId(),
       BillType.Rent,
-      apartment.rent,
+      tenant.apartment.rent,
       dueTo,
       'Rent',
-      apartment
+      tenant,
+      tenant.apartment
     );
     this.registerBill(rentBill);
     return rentBill;

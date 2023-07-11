@@ -8,6 +8,7 @@ import { ApartmentService } from '../apartment/apartment.service';
 import { BillStatus } from 'src/app/enums/bill-status';
 import { Router } from '@angular/router';
 import { BillUpdater } from 'src/app/ui-utils/updaters/bill-updater';
+import { Tenant } from 'src/app/models/tenant';
 @Component({
   selector: 'npm-bill',
   templateUrl: './bill-menu.component.html',
@@ -33,6 +34,7 @@ export class BillMenuComponent implements OnInit {
         0,
         new Date(),
         '',
+        Tenant.None,
         Apartment.None
       ),
       this.apartmentService

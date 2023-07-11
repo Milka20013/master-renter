@@ -1,6 +1,7 @@
 import { BillStatus } from '../enums/bill-status';
 import { BillType } from '../enums/bill-type';
 import { Apartment } from './apartment';
+import { Tenant } from './tenant';
 
 export class Bill {
   id: number;
@@ -9,6 +10,7 @@ export class Bill {
   dueTo: Date;
   description: string;
   apartment: Apartment;
+  tenant: Tenant;
   public status: BillStatus;
   constructor(
     id: number,
@@ -16,6 +18,7 @@ export class Bill {
     amount: number,
     dueTo: Date,
     description: string,
+    tenant: Tenant,
     apartment: Apartment
   ) {
     this.id = id;
@@ -23,6 +26,7 @@ export class Bill {
     this.amount = amount;
     this.dueTo = dueTo;
     this.description = description;
+    this.tenant = tenant;
     this.apartment = apartment;
     this.status = BillStatus.Registered;
   }

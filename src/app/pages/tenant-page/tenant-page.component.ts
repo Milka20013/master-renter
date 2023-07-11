@@ -33,11 +33,6 @@ export class TenantPageComponent implements OnInit, OnDestroy {
     });
     this.tenant = this.tenantService.getTenantById(this.id);
     this.tenantUpdater = new TenantUpdater(this.tenant, this.apartmentService);
-    if (this.tenant.isRentDue()) {
-      console.log('due');
-    } else {
-      console.log('no');
-    }
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();

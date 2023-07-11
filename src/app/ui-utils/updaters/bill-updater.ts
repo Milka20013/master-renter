@@ -3,6 +3,7 @@ import { BillStatus } from 'src/app/enums/bill-status';
 import { BillType } from 'src/app/enums/bill-type';
 import { Apartment } from 'src/app/models/apartment';
 import { Bill } from 'src/app/models/bill';
+import { Tenant } from 'src/app/models/tenant';
 import { ApartmentService } from 'src/app/pages/main-pages/landlord-page/menus/apartment/apartment.service';
 
 export class BillUpdater {
@@ -44,6 +45,12 @@ export class BillUpdater {
       this.bill.status = status;
     }
   }
+  updateTenant(tenant: Tenant) {
+    this.bill.tenant = tenant;
+    if (tenant.id != 0) {
+      this.bill.apartment = tenant.apartment;
+    }
+  }
 
   refresh(id: number) {
     this.bill = new Bill(
@@ -52,6 +59,7 @@ export class BillUpdater {
       this.bill.amount,
       this.bill.dueTo,
       this.bill.description,
+      this.bill.tenant,
       this.bill.apartment
     );
   }

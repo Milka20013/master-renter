@@ -12,7 +12,14 @@
     (onChange)="billUpdater.updateDescription($event)"
     label="Description"
   />
-  <apartment-selector (onChange)="billUpdater.updateApartment($event)" />
+  <tenant-selector
+    (onChange)="billUpdater.updateTenant($event)"
+    selectedTenantName="None"
+  />
+  <apartment-selector
+    (onChange)="billUpdater.updateApartment($event)"
+    *ngIf="billUpdater.bill.tenant.id == 0"
+  />
   <material-button (click)="registerBill()" inputText="Register" />
 </div>
 <bill-table [bills]="bills" [showApartment]="true" />

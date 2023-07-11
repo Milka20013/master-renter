@@ -11,15 +11,16 @@ import { BillStatus } from 'src/app/enums/bill-status';
 })
 export class TenantService {
   private _tenants: Tenant[] = [
+    Tenant.None,
     new Tenant(
-      0,
+      1,
       'asd',
       new Date('2000/01/01'),
       new Date('2000/02/01'),
       this.apartmentService.getApartmentById(1)
     ),
     new Tenant(
-      1,
+      2,
       'asd2',
       new Date('2000/01/01'),
       new Date('2000/02/01'),
@@ -41,7 +42,7 @@ export class TenantService {
     return maxId + 1;
   }
   getTenantById(id: number): Tenant {
-    return this.tenants.filter((x) => x.id == id)[0];
+    return this._tenants.filter((x) => x.id == id)[0];
   }
   registerTenant(tenant: Tenant) {
     this._tenants.push(tenant);
@@ -66,26 +67,27 @@ export class TenantService {
       this.finalBillAmount(tenant),
       new Date(Date.now() + 1000 * 3600 * 24 * 30),
       'Final bill',
+      tenant,
       tenant.apartment
     );
     if (bill.amount == 0) {
       bill.status = BillStatus.Paid;
     }
-    tenant.bills.push(bill);
     this.billService.registerBill(bill);
   }
 
   private finalBillAmount(tenant: Tenant): number {
     let amount = 0;
     for (const bill of tenant.bills) {
+      if (bill.type == BillType.Deposit) {
+        amount -= bill.amount;
+        continue;
+      }
       if (
         bill.status == BillStatus.Registered ||
         bill.status == BillStatus.Late
       ) {
         amount += bill.amount;
-      }
-      if (bill.type == BillType.Deposit) {
-        amount -= bill.amount;
       }
     }
     return amount;
@@ -94,11 +96,9 @@ export class TenantService {
     for (const tenant of this._tenants) {
       let dueTo = tenant.isRentDue();
       if (!!dueTo) {
-        tenant.bills.push(
-          this.billService.generateRentBill(tenant.apartment, dueTo)
-        );
+        tenant.bills.push(this.billService.generateRentBill(tenant, dueTo));
       }
     }
-    return this._tenants;
+    return this._tenants.filter((x) => x.id > 0);
   }
 }
