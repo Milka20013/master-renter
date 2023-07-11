@@ -90,6 +90,16 @@
       </tbody>
     </table>
   </div>
-  <material-button inputText="Done" (click)="editing = false" *ngIf="editing" />
+  <div *ngIf="editing">
+    <material-button inputText="Done" (click)="editing = false" />
+    <material-button
+      inputText="Remove tenant"
+      (click)="removeTenantClicked()"
+    />
+  </div>
+  <material-button
+    inputText="Generate final bill"
+    (click)="generateFinalBill()"
+  />
   <bill-table [bills]="tenant.bills" />
 </main>

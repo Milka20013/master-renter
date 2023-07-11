@@ -38,6 +38,10 @@ export class ApartmentPageComponent implements OnInit, OnDestroy {
   navigateToLandlordPage() {
     this.router.navigate(['landlord']);
   }
+  removeApartment() {
+    this.apartmentService.unregisterApartment(this.apartment);
+    this.navigateToLandlordPage();
+  }
   ngOnInit(): void {
     this.sub = this.route.params.subscribe((params) => {
       this.id = +params['id'];

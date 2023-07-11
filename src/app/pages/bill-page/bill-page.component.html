@@ -99,5 +99,8 @@
       </tbody>
     </table>
   </div>
-  <material-button inputText="Done" (click)="editing = false" *ngIf="editing" />
+  <div *ngIf="editing">
+    <material-button inputText="Done" (click)="editing = false" />
+    <material-button inputText="Remove bill" (click)="removeBill()" />
+  </div>
 </main>

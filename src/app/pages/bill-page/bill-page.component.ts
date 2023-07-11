@@ -41,6 +41,11 @@ export class BillPageComponent implements OnInit, OnDestroy {
   navigateToLandlordPage() {
     this.router.navigate(['landlord']);
   }
+
+  removeBill() {
+    this.billService.unRegisterBill(this.bill);
+    this.navigateToLandlordPage();
+  }
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }

@@ -7,7 +7,6 @@ import { MenuSelector } from 'src/app/enums/menu-selector';
   styleUrls: ['./landlord-page.component.less'],
 })
 export class LandlordPageComponent {
-  //make the enum visible in html component
   MenuSelector = MenuSelector;
 
   selectedMenu = MenuSelector.Tenant;

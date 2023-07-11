@@ -28,7 +28,7 @@ export class Bill {
   }
 
   checkStatus() {
-    if (this.dueTo.getDate() < Date.now()) {
+    if (this.dueTo.getTime() < Date.now()) {
       this.status = BillStatus.Late;
     }
   }

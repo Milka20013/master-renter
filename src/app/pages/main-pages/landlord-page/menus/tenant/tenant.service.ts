@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Apartment } from 'src/app/models/apartment';
 import { Tenant } from 'src/app/models/tenant';
 import { ApartmentService } from '../apartment/apartment.service';
-import { Bill } from 'src/app/models/bill';
 import { BillService } from '../bill/bill.service';
+import { Bill } from 'src/app/models/bill';
+import { BillType } from 'src/app/enums/bill-type';
+import { BillStatus } from 'src/app/enums/bill-status';
 
 @Injectable({
   providedIn: 'root',
@@ -48,9 +49,47 @@ export class TenantService {
 
   unregisterTenant(tenant: Tenant) {
     const index = this._tenants.indexOf(tenant);
+    if (index < 0) {
+      console.error('Tenant could not be found');
+      return;
+    }
     this._tenants.splice(index, 1);
   }
 
+  generateFinalBill(tenant: Tenant) {
+    if (tenant.bills.filter((x) => x.type == BillType.Final).length) {
+      return;
+    }
+    let bill: Bill = new Bill(
+      this.billService.newId(),
+      BillType.Final,
+      this.finalBillAmount(tenant),
+      new Date(Date.now() + 1000 * 3600 * 24 * 30),
+      'Final bill',
+      tenant.apartment
+    );
+    if (bill.amount == 0) {
+      bill.status = BillStatus.Paid;
+    }
+    tenant.bills.push(bill);
+    this.billService.registerBill(bill);
+  }
+
+  private finalBillAmount(tenant: Tenant): number {
+    let amount = 0;
+    for (const bill of tenant.bills) {
+      if (
+        bill.status == BillStatus.Registered ||
+        bill.status == BillStatus.Late
+      ) {
+        amount += bill.amount;
+      }
+      if (bill.type == BillType.Deposit) {
+        amount -= bill.amount;
+      }
+    }
+    return amount;
+  }
   public get tenants(): Tenant[] {
     for (const tenant of this._tenants) {
       let dueTo = tenant.isRentDue();

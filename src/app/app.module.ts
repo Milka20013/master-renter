@@ -26,6 +26,7 @@ import { BillTypeSelectorComponent } from './ui-utils/selectors/bill-selector/ty
 import { TenantPageComponent } from './pages/tenant-page/tenant-page.component';
 import { TenantUserPageComponent } from './pages/main-pages/tenant-page/tenant-user-page.component';
 import { BillTableComponent } from './ui-utils/tables/bill-table.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { BillTableComponent } from './ui-utils/tables/bill-table.component';
     MaterialSelect,
     MaterialTable,
     BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
