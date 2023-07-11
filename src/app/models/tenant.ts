@@ -1,3 +1,4 @@
+import { BillStatus } from '../enums/bill-status';
 import { BillType } from '../enums/bill-type';
 import { Apartment } from './apartment';
 import { Bill } from './bill';
@@ -66,5 +67,11 @@ export class Tenant {
   unregisterBill(bill: Bill) {
     const index = this.bills.indexOf(bill);
     this.bills.splice(index, 1);
+  }
+
+  public get unpaidBills(): Bill[] {
+    return this.bills.filter(
+      (x) => x.status != BillStatus.Acknowledged && x.status != BillStatus.Paid
+    );
   }
 }

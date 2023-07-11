@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TenantRemoveDialogComponent } from 'src/app/ui-utils/dialog/tenant-remove-dialog.component';
 import { BillType } from 'src/app/enums/bill-type';
 import { BillStatus } from 'src/app/enums/bill-status';
+import { Bill } from 'src/app/models/bill';
 
 @Component({
   selector: 'npm-tenant',
@@ -19,7 +20,9 @@ export class TenantPageComponent implements OnInit, OnDestroy {
   private sub: any;
   tenant!: Tenant;
   tenantUpdater!: TenantUpdater;
+
   editing: boolean = false;
+  settlementBills: Bill[] = [];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -65,6 +68,12 @@ export class TenantPageComponent implements OnInit, OnDestroy {
 
   generateFinalBill() {
     this.tenantService.generateFinalBill(this.tenant);
+  }
+
+  generateMonthlySettlement() {
+    this.settlementBills = this.tenantService.generateMonthlySettlement(
+      this.tenant
+    );
   }
 
   navigateToLandlordPage() {

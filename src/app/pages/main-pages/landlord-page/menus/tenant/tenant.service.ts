@@ -76,6 +76,19 @@ export class TenantService {
     this.billService.registerBill(bill);
   }
 
+  generateMonthlySettlement(tenant: Tenant): Bill[] {
+    let bills: Bill[] = [];
+    const billsByApartment: Bill[] = this.billService.getBillsByApartment(
+      tenant.apartment
+    );
+    bills = billsByApartment.filter(
+      (x) => x.status != BillStatus.Acknowledged && x.status != BillStatus.Paid
+    );
+    bills = bills.concat(tenant.unpaidBills);
+    bills = Array.from(new Set(bills));
+    return bills;
+  }
+
   private finalBillAmount(tenant: Tenant): number {
     let amount = 0;
     for (const bill of tenant.bills) {

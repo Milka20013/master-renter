@@ -53,7 +53,7 @@ export class BillService {
     return this._bills.filter((x) => x.id == id)[0];
   }
 
-  getBills(apartment: Apartment): Bill[] {
+  getBillsByApartment(apartment: Apartment): Bill[] {
     return this.bills.filter((x) => x.apartment == apartment);
   }
 

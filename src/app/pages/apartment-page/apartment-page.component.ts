@@ -48,7 +48,7 @@ export class ApartmentPageComponent implements OnInit, OnDestroy {
     });
 
     this.apartment = this.apartmentService.getApartmentById(this.id);
-    this.bills = this.billService.getBills(this.apartment);
+    this.bills = this.billService.getBillsByApartment(this.apartment);
   }
 
   ngOnDestroy(): void {

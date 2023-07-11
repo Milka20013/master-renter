@@ -101,5 +101,13 @@
     inputText="Generate final bill"
     (click)="generateFinalBill()"
   />
+  <material-button
+    inputText="Generate monthly settlement"
+    (click)="generateMonthlySettlement()"
+  />
+  <monthly-settlement-page
+    [bills]="settlementBills"
+    *ngIf="settlementBills.length"
+  />
   <bill-table [bills]="tenant.bills" />
 </main>
