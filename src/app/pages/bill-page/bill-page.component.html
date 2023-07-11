@@ -78,12 +78,25 @@
           </td>
         </tr>
         <tr>
+          <td>Tenant:</td>
+          <td>
+            <tenant-selector
+              [selectedTenantName]="bill.tenant.name"
+              (onChange)="billUpdater.updateTenant($event)"
+            />
+          </td>
+        </tr>
+        <tr>
           <td>Apartment</td>
           <td>
             <apartment-selector
               (onChange)="billUpdater.updateApartment($event)"
               [selectedApartment]="bill.apartment"
+              *ngIf="billUpdater.bill.tenant.id == 0"
             />
+            <div *ngIf="billUpdater.bill.tenant.id != 0">
+              {{ bill.apartment.name }}
+            </div>
           </td>
         </tr>
         <tr>
