@@ -18,7 +18,16 @@
         <td>{{ bill.dueTo | date : "longDate" }}</td>
         <td>{{ bill.description }}</td>
         <td *ngIf="showApartment">{{ bill.apartment.name }}</td>
-        <td>{{ billStatus[bill.status] }}</td>
+        <td>
+          {{ billStatus[bill.status] }}
+        </td>
+        <td>
+          <img
+            style="height: 40px; width: 40px"
+            src="../../../assets/pencil.png"
+            alt="pencil.png"
+          />
+        </td>
       </tr>
     </tbody>
   </table>

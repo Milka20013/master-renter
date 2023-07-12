@@ -1,4 +1,5 @@
 <div class="register">
+  <tenant-chart [tenantData]="tenantPlotData" />
   <div class="header">Register Tenant</div>
 
   <material-button
@@ -44,6 +45,13 @@
         <!--hard coded currency type !!-->
         <td>{{ tenant.apartment.rent }} $</td>
         <td>{{ tenant.remainingTime | number : "0.0-2" }} days</td>
+        <td>
+          <img
+            style="height: 40px; width: 40px"
+            src="../../../assets/pencil.png"
+            alt="pencil.png"
+          />
+        </td>
       </tr>
     </tbody>
   </table>

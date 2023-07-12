@@ -9,6 +9,10 @@ import { ApartmentService } from '../apartment/apartment.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { TenantUpdater } from 'src/app/ui-utils/updaters/tenant-updater';
 import { Router } from '@angular/router';
+import {
+  TenantChartComponent,
+  TenantChartData,
+} from './tenant-chart/tenant-chart.component';
 
 @Component({
   selector: 'npm-tenant-menu',
@@ -21,6 +25,7 @@ export class TenantMenuComponent implements OnInit {
   apartmentNames: string[] = [];
   tenants: Tenant[] = [];
   tenantUpdater: TenantUpdater;
+  tenantPlotData: TenantChartData[] = [];
 
   constructor(
     private router: Router,
@@ -49,6 +54,9 @@ export class TenantMenuComponent implements OnInit {
   ngOnInit(): void {
     this.apartmentNames = this.apartmentService.apartments.map((x) => x.name);
     this.tenants = this.tenantService.tenants;
+    this.tenantPlotData = TenantChartComponent.ConvertTenantsToPlottableData(
+      this.tenants
+    );
   }
 
   onRowClicked(tenant: Tenant) {
@@ -62,5 +70,9 @@ export class TenantMenuComponent implements OnInit {
   registerTenant() {
     this.tenantService.registerTenant(this.tenantUpdater.tenant);
     this.refreshTenantUpdater();
+    this.tenants = this.tenantService.tenants;
+    this.tenantPlotData = TenantChartComponent.ConvertTenantsToPlottableData(
+      this.tenants
+    );
   }
 }

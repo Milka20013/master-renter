@@ -29,6 +29,10 @@ import { BillTableComponent } from './ui-utils/tables/bill-table.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TenantSelectorComponent } from './ui-utils/selectors/tenant-selector/tenant-selector.component';
 import { MonthlySettlementPageComponent } from './pages/monthly-settlement-page/monthly-settlement-page.component';
+import { TenantChartComponent } from './pages/main-pages/landlord-page/menus/tenant/tenant-chart/tenant-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,7 @@ import { MonthlySettlementPageComponent } from './pages/monthly-settlement-page/
     BillTableComponent,
     TenantSelectorComponent,
     MonthlySettlementPageComponent,
+    TenantChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,8 +68,9 @@ import { MonthlySettlementPageComponent } from './pages/monthly-settlement-page/
     MaterialTable,
     BrowserAnimationsModule,
     MatDialogModule,
+    NgxChartsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

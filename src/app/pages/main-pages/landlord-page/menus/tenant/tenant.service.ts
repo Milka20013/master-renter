@@ -15,15 +15,15 @@ export class TenantService {
     new Tenant(
       1,
       'asd',
-      new Date('2000/01/01'),
-      new Date('2000/02/01'),
+      new Date('2021/01/01'),
+      new Date('2022/03/02'),
       this.apartmentService.getApartmentById(1)
     ),
     new Tenant(
       2,
       'asd2',
-      new Date('2000/01/01'),
-      new Date('2000/02/01'),
+      new Date('2022/01/01'),
+      new Date('2023/07/01'),
       this.apartmentService.getApartmentById(2)
     ),
   ];
