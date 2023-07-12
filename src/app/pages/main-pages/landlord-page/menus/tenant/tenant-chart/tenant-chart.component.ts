@@ -108,4 +108,12 @@ export class TenantChartComponent {
     }
     return numbers;
   }
+
+  yAxisFormat(val: number) {
+    if (val % 1 == 0) {
+      return val.toLocaleString();
+    } else {
+      return '';
+    }
+  }
 }
