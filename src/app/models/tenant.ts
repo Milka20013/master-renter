@@ -55,7 +55,7 @@ export class Tenant {
       }
     }
     if ((Date.now() - lastRent.getTime()) / (1000 * 3600 * 24) >= 30) {
-      return new Date(dueTo.getTime() + 1000 * 3600 * 24);
+      return new Date(dueTo.getTime() + 1000 * 3600 * 24 * 30);
     }
     return false;
   }

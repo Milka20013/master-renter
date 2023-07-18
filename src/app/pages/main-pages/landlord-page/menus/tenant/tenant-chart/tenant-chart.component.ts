@@ -11,25 +11,7 @@ export interface TenantChartData {
   styleUrls: ['./tenant-chart.component.less'],
 })
 export class TenantChartComponent {
-  @Input() tenantData: TenantChartData[] = [
-    {
-      name: 'Data',
-      series: [
-        {
-          value: '5',
-          name: '2016-09-18',
-        },
-        {
-          value: '8',
-          name: '2016-10-18',
-        },
-        {
-          value: '3',
-          name: '2016-11-18',
-        },
-      ],
-    },
-  ];
+  @Input() tenantData: TenantChartData[] = [];
 
   public static ConvertTenantsToPlottableData(
     tenants: Tenant[]
